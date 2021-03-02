@@ -24,24 +24,3 @@ class FakeMovieProvider : MovieProvider {
     }
 
 }
-
-// TODO replace on Mock view
-class FakeView: IView {
-
-    override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
-        // Do nothing
-    }
-
-    override fun markVariantAsRight(variantIndex: Int) {
-        // Do nothing
-    }
-
-    override fun markVariantAsWrong(variantIndex: Int) {
-        // Do nothing
-    }
-
-    override fun showResult(resultText: String) {
-        // Do nothing
-    }
-
-}

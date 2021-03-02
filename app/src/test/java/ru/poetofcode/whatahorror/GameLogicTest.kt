@@ -4,6 +4,7 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
 import ru.poetofcode.whatahorror.helper.RandomHelper
 import ru.poetofcode.whatahorror.usecase.GameLogic
 import ru.poetofcode.whatahorror.usecase.IView
@@ -36,12 +37,43 @@ class GameLogicTest {
     }
 
     @Test
-    fun `Check that ask() then reply() working as expected`() {
-
-        // implement
-
-
+    fun `Check that ask() then reply() working as expected - first time ask`() {
         Assert.assertNotNull(gameLogic)
+
+        gameLogic?.ask()
+
+        Mockito.verify(view)?.showQuestion(
+            "Из какого фильма этот монстр?",
+            "http://test-server.com/image.png",
+            listOf("no", "yes", "no-too")
+        )
+
+        gameLogic?.reply(1)
+
+        Mockito.verify(view)?.markVariantAsRight(1)
+        Mockito.verify(view)?.showResult("Вы угадали!")
+        Mockito.verifyNoMoreInteractions(view)
+    }
+
+    @Test
+    fun `Check that ask() then reply() working as expected - second time ask`() {
+        Assert.assertNotNull(gameLogic)
+
+        gameLogic?.ask()
+        gameLogic?.ask()
+
+        Mockito.verify(view)?.showQuestion(
+            "Из какого фильма этот монстр?",
+            "http://test-server.com/image-2.png",
+            listOf("yes", "no")
+        )
+
+        gameLogic?.reply(1)
+
+        Mockito.verify(view)?.markVariantAsRight(0)
+        Mockito.verify(view)?.markVariantAsWrong(1)
+        Mockito.verify(view)?.showResult("Ответ неверный :(")
+        Mockito.verifyNoMoreInteractions(view)
     }
 
     @After
