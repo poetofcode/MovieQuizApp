@@ -1,7 +1,7 @@
 package ru.poetofcode.whatahorror.usecase
 
-import ru.poetofcode.whatahorror.helper.RandomHelper
 import ru.poetofcode.whatahorror.data.Movie
+import ru.poetofcode.whatahorror.helper.RandomHelper
 
 class GameLogic(
     private val view: IView,
