@@ -1,6 +1,10 @@
 package ru.poetofcode.whatahorror
 
-class GameLogic(private val view: IView) {
+class GameLogic(
+    private val view: IView,
+    private val movieProvider: MovieProvider,
+    private val randHelper: RandomHelper
+) {
 
     private val lastQuestions: ArrayList<Question> = ArrayList()
 
@@ -9,11 +13,11 @@ class GameLogic(private val view: IView) {
     }
 
     fun ask() {
-        val q = getCurrQuestion()
+        val q = lastQuestion()
         view.showQuestion(q.description, q.imageUrls[0], q.variants)
     }
 
-    private fun getCurrQuestion(): Question {
+    private fun lastQuestion(): Question {
         if (lastQuestions.size > 0 && lastQuestions.last().result.isAnswered()) {
             return lastQuestions.last()
         }
@@ -23,22 +27,27 @@ class GameLogic(private val view: IView) {
     }
 
     private fun createQuestion(): Question {
+        val count = movieProvider.count()
+        val indexes = mutableListOf<Int>()
+        val movies = mutableListOf<Movie>()
 
-        // TODO implement logic of creation new question:
-        //  ..
-        //  1. Create new interface MovieProvider
-        //  2. Define methods for getting data for building question
+        for (i in 1..4) {
+            indexes += randHelper.fromRange(0..count, indexes)
+            movies += movieProvider.movie(indexes.last())
+        }
+
+        val rightIndex = randHelper.fromRange(0..movies.size)
 
         return Question(
-            description = "Test movie name",
-            imageUrls = listOf(),
-            variants = listOf(),
-            indexOfRightVariant = 0
+            description = "Из какого фильма этот монстр?",
+            imageUrls = movies[rightIndex].imageUrls,
+            variants = movies.map { it.name },
+            indexOfRightVariant = rightIndex
         )
     }
 
     fun reply(selectedVariant: Int) {
-        val q = getCurrQuestion()
+        val q = lastQuestion()
 
         if (selectedVariant == q.indexOfRightVariant) {
             view.markVariantAsRight(selectedVariant)
