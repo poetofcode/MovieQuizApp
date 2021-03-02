@@ -17,6 +17,8 @@ class GameLogic(
 
     fun ask() {
         val q = lastQuestion()
+        // println("Last question: $q")
+
         view.showQuestion(q.description, q.imageUrls[0], q.variants)
     }
 
