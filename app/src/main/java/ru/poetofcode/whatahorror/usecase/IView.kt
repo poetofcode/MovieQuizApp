@@ -1,4 +1,4 @@
-package ru.poetofcode.whatahorror
+package ru.poetofcode.whatahorror.usecase
 
 interface IView {
 

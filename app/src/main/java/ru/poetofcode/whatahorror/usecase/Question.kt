@@ -1,4 +1,4 @@
-package ru.poetofcode.whatahorror
+package ru.poetofcode.whatahorror.usecase
 
 enum class AnswerResult {
     RESULT_NONE,
