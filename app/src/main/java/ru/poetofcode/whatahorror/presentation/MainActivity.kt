@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), IView {
     }
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
-        // Log.d("tag", "Description: $description")
+        Log.d("tag", "Description: $description,\nimageUrl: $imageUrl,\nvariants: $variants")
     }
 
     override fun markVariantAsRight(variantIndex: String) {
