@@ -1,4 +1,4 @@
-package ru.poetofcode.whatahorror
+package ru.poetofcode.whatahorror.service
 
 import dagger.Module
 import dagger.Provides
@@ -9,7 +9,7 @@ import ru.poetofcode.whatahorror.usecase.MovieProvider
 import javax.inject.Singleton
 
 @Module
-class DataModule {
+class TestDataModule {
 
     @Provides
     fun provideRandomHelper(): RandomHelper {

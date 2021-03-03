@@ -1,4 +1,4 @@
-package ru.poetofcode.whatahorror
+package ru.poetofcode.whatahorror.service
 
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper

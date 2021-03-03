@@ -4,6 +4,9 @@ import org.junit.*
 import org.mockito.Mockito
 import org.mockito.Mockito.times
 import ru.poetofcode.whatahorror.helper.RandomHelper
+import ru.poetofcode.whatahorror.service.DaggerTestAppComponent
+import ru.poetofcode.whatahorror.service.FakeRandomHelper
+import ru.poetofcode.whatahorror.service.TestDataModule
 import ru.poetofcode.whatahorror.usecase.GameLogic
 import ru.poetofcode.whatahorror.usecase.IView
 import ru.poetofcode.whatahorror.usecase.MovieProvider
@@ -26,8 +29,8 @@ class GameLogicTest {
 
     @Before
     fun setUp() {
-        val appComponent = DaggerAppComponent.builder()
-            .dataModule(DataModule())
+        val appComponent = DaggerTestAppComponent.builder()
+            .testDataModule(TestDataModule())
             .build()
 
         appComponent.injectGameLogicTest(this)
