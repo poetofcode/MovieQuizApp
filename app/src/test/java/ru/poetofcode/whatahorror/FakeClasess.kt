@@ -6,7 +6,7 @@ import ru.poetofcode.whatahorror.usecase.MovieProvider
 
 const val STEP_INDEX = 4
 
-class FakeRandomHelper : RandomHelper {
+class FakeRandomHelper : RandomHelper() {
 
     var startIndex = 0
 
