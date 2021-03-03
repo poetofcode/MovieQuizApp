@@ -7,7 +7,7 @@ import ru.poetofcode.whatahorror.helper.RandomHelper
 class HelperTest {
 
     @Test
-    fun `random helper fromRange() test`() {
+    fun `Random helper fromRange() test`() {
         val randomHelper = RandomHelper()
 
         Assert.assertTrue(isValueInRange(randomHelper.fromRange(5..10), 5..10))
