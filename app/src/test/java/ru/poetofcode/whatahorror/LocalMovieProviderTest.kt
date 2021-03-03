@@ -1,5 +1,6 @@
 package ru.poetofcode.whatahorror
 
+import com.google.gson.Gson
 import org.junit.Assert
 import org.junit.Test
 import ru.poetofcode.whatahorror.data.LocalMovieProvider
@@ -14,7 +15,7 @@ class LocalMovieProviderTest {
         val fileStream = this.javaClass.getResourceAsStream("/movies.json")
         Assert.assertNotNull(fileStream)
 
-        val provider = LocalMovieProvider(fileStream!!)
+        val provider = LocalMovieProvider(fileStream!!, Gson())
 
         Assert.assertEquals(2, provider.count())
         Assert.assertEquals("Cobra", provider.movie(1).name)
