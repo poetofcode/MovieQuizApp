@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Iron Man",
+    "images": ["http://example.com/ironman.png"]
+  },
+  {
+    "name": "Cobra",
+    "images": [
+      "http://example.com/cobra.png",
+      "http://example.com/cobra-2.png"
+    ]
+  }
+]
