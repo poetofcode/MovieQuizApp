@@ -37,7 +37,7 @@ class GameLogic(
         val movies = mutableListOf<Movie>()
 
         for (i in 1..4) {
-            indexes += randHelper.fromRange(0..count, indexes)
+            indexes += randHelper.fromRange(0 until count, indexes)
             movies += movieProvider.movie(indexes.last())
         }
 

@@ -5,7 +5,12 @@ import kotlin.random.Random
 open class RandomHelper {
 
     open fun fromRange(range: IntRange, exceptList: List<Int>? = null): Int {
-        val filteredList = range.filter { value ->  exceptList?.find { value == it } == null }
+        val filteredList = range.filter { value ->
+            exceptList?.find { value == it } == null
+        }
+
+        // println(filteredList)
+
         return filteredList[Random.nextInt(filteredList.size)]
     }
 
