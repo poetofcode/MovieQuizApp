@@ -1,5 +1,6 @@
 package ru.poetofcode.whatahorror.usecase
 
+import android.util.Log
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper
 
@@ -41,7 +42,7 @@ class GameLogic(
             movies += movieProvider.movie(indexes.last())
         }
 
-        val rightIndex = randHelper.fromRange(0..movies.size)
+        val rightIndex = randHelper.fromRange(0 until movies.size)
 
         return Question(
             description = "Из какого фильма этот монстр?",

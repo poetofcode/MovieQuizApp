@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Годзилла",
+    "images": ["http://example.com/godzilla.png"]
+  },
+  {
+    "name": "Улица Вязов",
+    "images": [
+      "http://example.com/elm.png",
+      "http://example.com/elm-2.png"
+    ]
+  },
+  {
+    "name": "Matrix",
+    "images": ["http://example.com/godzilla.png"]
+  },
+  {
+    "name": "Sweet November",
+    "images": ["http://example.com/godzilla.png"]
+  }
+]

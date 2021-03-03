@@ -1,3 +1,5 @@
 package ru.poetofcode.whatahorror.data
 
-data class Movie(val name: String, val imageUrls: List<String>)
+import com.google.gson.annotations.SerializedName
+
+data class Movie(val name: String, @SerializedName("images") val imageUrls: List<String>)
