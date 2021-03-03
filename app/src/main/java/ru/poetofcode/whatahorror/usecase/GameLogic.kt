@@ -23,7 +23,7 @@ class GameLogic(
     }
 
     private fun lastQuestion(): Question {
-        if (lastQuestions.size > 0 && lastQuestions.last().result.isAnswered()) {
+        if (lastQuestions.size > 0 && !lastQuestions.last().result.isAnswered()) {
             return lastQuestions.last()
         }
         lastQuestions.add(createQuestion())
@@ -47,20 +47,22 @@ class GameLogic(
             description = "Из какого фильма этот монстр?",
             imageUrls = movies[rightIndex].imageUrls,
             variants = movies.map { it.name },
-            indexOfRightVariant = rightIndex
+            rightVariant = movies[rightIndex].name
         )
     }
 
-    fun reply(selectedVariant: Int) {
+    fun reply(selectedVariant: String) {
         val q = lastQuestion()
 
-        if (selectedVariant == q.indexOfRightVariant) {
+        if (selectedVariant == q.rightVariant) {
             view.markVariantAsRight(selectedVariant)
             view.showResult("Вы угадали!")
+            q.result = AnswerResult.RESULT_RIGHT
         } else {
             view.markVariantAsWrong(selectedVariant)
-            view.markVariantAsRight(q.indexOfRightVariant)
+            view.markVariantAsRight(q.rightVariant)
             view.showResult("Ответ неверный :(")
+            q.result = AnswerResult.RESULT_WRONG
         }
     }
 

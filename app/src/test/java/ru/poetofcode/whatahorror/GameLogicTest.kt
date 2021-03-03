@@ -1,10 +1,8 @@
 package ru.poetofcode.whatahorror
 
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
+import org.junit.*
 import org.mockito.Mockito
+import org.mockito.Mockito.times
 import ru.poetofcode.whatahorror.helper.RandomHelper
 import ru.poetofcode.whatahorror.usecase.GameLogic
 import ru.poetofcode.whatahorror.usecase.IView
@@ -44,13 +42,13 @@ class GameLogicTest {
 
         Mockito.verify(view)?.showQuestion(
             "Из какого фильма этот монстр?",
-            "http://test-server.com/image.png",
-            listOf("yes", "no", "no-too", "no-again")
+            "http://test-server.com/image-1.png",
+            listOf("film-1", "film-2", "film-3", "film-4")
         )
 
-        gameLogic?.reply(0)
+        gameLogic?.reply("film-1")
 
-        Mockito.verify(view)?.markVariantAsRight(0)
+        Mockito.verify(view)?.markVariantAsRight("film-1")
         Mockito.verify(view)?.showResult("Вы угадали!")
         // Mockito.verifyNoMoreInteractions(view)
     }
@@ -59,20 +57,23 @@ class GameLogicTest {
     fun `Check that ask() then reply() working as expected - second time ask`() {
         Assert.assertNotNull(gameLogic)
 
-        gameLogic?.ask()
+        gameLogic!!.ask()
+        gameLogic!!.reply("wrong-ans")
+
+        (randHelper as FakeRandomHelper).nextStep()     // Pushing first index
         gameLogic?.ask()
 
         Mockito.verify(view)?.showQuestion(
             "Из какого фильма этот монстр?",
-            "http://test-server.com/image2.png",
-            listOf("film1", "film2", "film3", "film4")
+            "http://test-server.com/image-5.png",
+            listOf("film-5", "film-6", "film-7", "film-8")
         )
 
-        gameLogic?.reply(1)
+        gameLogic?.reply("film-8")
 
-        Mockito.verify(view)?.markVariantAsRight(0)
-        Mockito.verify(view)?.markVariantAsWrong(1)
-        Mockito.verify(view)?.showResult("Ответ неверный :(")
+        Mockito.verify(view)?.markVariantAsRight("film-5")
+        Mockito.verify(view)?.markVariantAsWrong("film-8")
+        Mockito.verify(view, times(2))?.showResult("Ответ неверный :(")
         // Mockito.verifyNoMoreInteractions(view)
     }
 

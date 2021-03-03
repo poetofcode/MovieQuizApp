@@ -18,10 +18,10 @@ data class Question(
     val description: String,
     val imageUrls: List<String>,
     val variants: List<String>,
-    val indexOfRightVariant: Int,
+    val rightVariant: String,
     var result: AnswerResult = AnswerResult.RESULT_NONE
 ) {
     override fun toString(): String {
-        return "Question(description='$description', imageUrls=$imageUrls, variants=$variants, indexOfRightVariant=$indexOfRightVariant, result=$result)"
+        return "Question(description='$description', imageUrls=$imageUrls, variants=$variants, indexOfRightVariant=$rightVariant, result=$result)"
     }
 }
