@@ -16,9 +16,10 @@ class FragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(ac
         return fragments[position]
     }
 
-    fun addFragment(fragment: Fragment) {
+    fun addFragment(fragment: Fragment): Int {
         fragments += fragment
         notifyItemInserted(fragments.size - 1)
+        return fragments.size - 1
     }
 
 }

@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity(), IView {
 
     var pagerAdapter: FragmentPagerAdapter? = null
 
-    private var i = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,6 +47,13 @@ class MainActivity : AppCompatActivity(), IView {
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
         Log.d("tag", "Description: $description,\nimageUrl: $imageUrl,\nvariants: $variants")
+
+        val lastIndex = pagerAdapter?.addFragment(QuestionFragment().apply {
+            arguments = Bundle().apply {
+                putString("description", variants[0])
+            }
+        })
+        viewPager.setCurrentItem(lastIndex ?: return, true)
     }
 
     override fun markVariantAsRight(variantIndex: String) {
@@ -64,11 +69,8 @@ class MainActivity : AppCompatActivity(), IView {
     }
 
     fun onNextPageClicked() {
-        pagerAdapter!!.addFragment(QuestionFragment().apply {
-            arguments = Bundle().apply { putString("description", "Это фрагмент #$i") }
-            i++
-        })
-        viewPager.setCurrentItem(i - 1, true)
+        logic!!.reply("empty")
+        logic!!.ask()
     }
 
 }
