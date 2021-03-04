@@ -26,9 +26,10 @@ class QuestionFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        descriptionText.text = requireArguments().getString("description")
-
-        binding.question = QuestionInfo("***")
+        binding.question = QuestionInfo(
+            "Эти кнопки пока не работают",
+            listOf("one", "two", "three", "four")
+        )
 
         nextPage.setOnClickListener { mainActivity().onNextPageClicked() }
     }
