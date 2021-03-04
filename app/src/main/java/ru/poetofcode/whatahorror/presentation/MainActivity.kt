@@ -3,6 +3,7 @@ package ru.poetofcode.whatahorror.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
 import ru.poetofcode.whatahorror.R
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity(), IView {
     @set:Inject
     var randHelper: RandomHelper? = null
 
+    var pagerAdapter: FragmentPagerAdapter? = null
+
+    private var i = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,12 @@ class MainActivity : AppCompatActivity(), IView {
 
         logic = GameLogic(this, movieProvider!!, randHelper!!)
         logic?.ask()
+
+        // Init view pager
+        viewPager.adapter = FragmentPagerAdapter(this).apply {
+            pagerAdapter = this
+        }
+        onNextPageClicked()
     }
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
@@ -53,5 +63,12 @@ class MainActivity : AppCompatActivity(), IView {
 
     }
 
+    fun onNextPageClicked() {
+        pagerAdapter!!.addFragment(QuestionFragment().apply {
+            arguments = Bundle().apply { putString("description", "Это фрагмент #$i") }
+            i++
+        })
+        viewPager.setCurrentItem(i - 1, true)
+    }
 
 }
