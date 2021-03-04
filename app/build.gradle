@@ -22,6 +22,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    sourceSets {
+        debug {
+            java.srcDirs += 'build/generated/data_binding_base_class_source_out/debug/out'
+        }
+    }
 }
 
 dependencies {

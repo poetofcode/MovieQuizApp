@@ -3,6 +3,7 @@ package ru.poetofcode.whatahorror.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
@@ -50,7 +51,9 @@ class MainActivity : AppCompatActivity(), IView {
 
         val lastIndex = pagerAdapter?.addFragment(QuestionFragment().apply {
             arguments = Bundle().apply {
-                putString("description", variants[0])
+                putString("description", description)
+                putString("answer", variants[0])
+                putStringArrayList("variants", ArrayList(variants))
             }
         })
         viewPager.setCurrentItem(lastIndex ?: return, true)
