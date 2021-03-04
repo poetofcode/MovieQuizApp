@@ -6,6 +6,10 @@
         <variable
             name="question"
             type="ru.poetofcode.whatahorror.presentation.QuestionInfo" />
+
+        <variable
+            name="variantHandler"
+            type="ru.poetofcode.whatahorror.presentation.VariantButtonHandler" />
     </data>
 
     <LinearLayout
@@ -32,16 +36,20 @@
             app:alignContent="center">
 
             <include layout="@layout/question_button"
-                app:variant="@{question.variants.get(0)}" />
+                app:variant="@{question.variants.get(0)}"
+                app:handler="@{variantHandler}" />
 
             <include layout="@layout/question_button"
-                app:variant="@{question.variants.get(1)}" />
+                app:variant="@{question.variants.get(1)}"
+                app:handler="@{variantHandler}" />
 
             <include layout="@layout/question_button"
-                app:variant="@{question.variants.get(2)}" />
+                app:variant="@{question.variants.get(2)}"
+                app:handler="@{variantHandler}" />
 
             <include layout="@layout/question_button"
-                app:variant="@{question.variants.get(3)}" />
+                app:variant="@{question.variants.get(3)}"
+                app:handler="@{variantHandler}" />
 
         </com.google.android.flexbox.FlexboxLayout>
 

@@ -30,6 +30,12 @@ class QuestionFragment : Fragment() {
             "Эти кнопки пока не работают",
             listOf("one", "two", "three", "four")
         )
+        binding.variantHandler = object: VariantButtonHandler {
+            override fun onClick(variant: String) {
+                // println("Variant clicked: $variant")
+                mainActivity().onVariantSelected(variant)
+            }
+        }
 
         nextPage.setOnClickListener { mainActivity().onNextPageClicked() }
     }

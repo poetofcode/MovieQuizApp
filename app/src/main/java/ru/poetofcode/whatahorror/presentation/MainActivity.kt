@@ -72,8 +72,11 @@ class MainActivity : AppCompatActivity(), IView {
     }
 
     fun onNextPageClicked() {
-        logic!!.reply("empty")
         logic!!.ask()
+    }
+
+    fun onVariantSelected(variant: String) {
+        logic!!.reply(variant)
     }
 
 }
