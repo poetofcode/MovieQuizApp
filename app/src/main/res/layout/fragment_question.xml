@@ -24,10 +24,12 @@
             android:textColor="@android:color/holo_orange_dark"
             android:layout_gravity="center" />
 
-        <LinearLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            app:flexWrap="wrap"
+            app:alignItems="center"
+            app:alignContent="center">
 
             <include layout="@layout/question_button"
                 app:variant="@{question.variants.get(0)}" />
@@ -35,20 +37,13 @@
             <include layout="@layout/question_button"
                 app:variant="@{question.variants.get(1)}" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-
             <include layout="@layout/question_button"
                 app:variant="@{question.variants.get(2)}" />
 
             <include layout="@layout/question_button"
                 app:variant="@{question.variants.get(3)}" />
 
-        </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <Button
             android:id="@+id/nextPage"

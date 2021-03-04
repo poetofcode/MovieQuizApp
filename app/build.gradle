@@ -47,6 +47,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation "com.google.dagger:dagger-android:$daggerVer"
     implementation "com.google.dagger:dagger-android-support:$daggerVer" // if you use the support libraries
+    implementation 'com.google.android:flexbox:2.0.1'
     kapt "com.google.dagger:dagger-android-processor:$daggerVer"
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
     kaptTest "com.google.dagger:dagger-compiler:$daggerVer"
