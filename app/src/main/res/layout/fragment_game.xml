@@ -28,6 +28,12 @@
             android:textColor="@android:color/holo_orange_dark"
             android:layout_gravity="center" />
 
+        <ImageView
+            android:layout_width="@dimen/imageWidth"
+            android:layout_height="@dimen/imageHeight"
+            android:scaleType="centerInside"
+            app:imageUrl="@{question.imageUrl}"/>
+
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

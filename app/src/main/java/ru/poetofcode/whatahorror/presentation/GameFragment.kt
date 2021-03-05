@@ -60,6 +60,7 @@ class GameFragment : Fragment(), GameView {
 
         questionInfo = QuestionInfo(
             description,
+            imageUrl,
             variants
         )
 
@@ -76,6 +77,7 @@ class GameFragment : Fragment(), GameView {
         if (completed) return
         questionInfo = QuestionInfo(
             questionInfo.description,
+            questionInfo.imageUrl,
             questionInfo.variants.map { if (variantIndex == it) return@map "(ДА) $it" else it }
         )
         binding.question = questionInfo
@@ -85,6 +87,7 @@ class GameFragment : Fragment(), GameView {
         if (completed) return
         questionInfo = QuestionInfo(
             questionInfo.description,
+            questionInfo.imageUrl,
             questionInfo.variants.map { if (variantIndex == it) return@map "(НЕТ) $it" else it }
         )
         binding.question = questionInfo

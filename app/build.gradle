@@ -48,10 +48,10 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$daggerVer"
     implementation "com.google.dagger:dagger-android-support:$daggerVer" // if you use the support libraries
     implementation 'com.google.android:flexbox:2.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     kapt "com.google.dagger:dagger-android-processor:$daggerVer"
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
     kaptTest "com.google.dagger:dagger-compiler:$daggerVer"
-
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:2.+"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
