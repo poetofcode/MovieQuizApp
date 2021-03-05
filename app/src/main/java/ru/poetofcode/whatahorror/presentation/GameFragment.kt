@@ -1,15 +1,19 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
+import ru.poetofcode.whatahorror.DaggerAppComponent
+import ru.poetofcode.whatahorror.DataModule
 import ru.poetofcode.whatahorror.R
 import ru.poetofcode.whatahorror.databinding.FragmentGameBinding
+import ru.poetofcode.whatahorror.usecase.GameLogic
 import ru.poetofcode.whatahorror.usecase.GameView
+import javax.inject.Inject
 
 // How to use data-binding with Fragment: https://stackoverflow.com/a/34719627
 
@@ -21,6 +25,9 @@ class GameFragment : Fragment(), GameView {
 
     private var completed = false
 
+    @set:Inject
+    var gameLogic: GameLogic? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,21 +38,14 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        questionInfo = QuestionInfo(
-            "Эти кнопки пока не работают",
-            listOf("one", "two", "three", "four")
-        )
+        DaggerAppComponent
+            .builder()
+            .dataModule(DataModule(mainActivity()))
+            .build()
+            .injectGameFragment(this)
 
-        binding.question = questionInfo
-        binding.variantHandler = object: VariantButtonHandler {
-            override fun onClick(variant: String) {
-                if (completed) return
-                mainActivity().onVariantSelected(variant)
-            }
-        }
-
-        // TODO replace on binding
-        nextPage.setOnClickListener { mainActivity().onNextPageClicked() }
+        gameLogic!!.gameView = this
+        gameLogic!!.ask()
     }
 
     private fun mainActivity(): MainActivity {
@@ -54,23 +54,40 @@ class GameFragment : Fragment(), GameView {
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
         if (completed) return
-        mainActivity().onNextQuestion(description, imageUrl, variants)
+
+        // TODO replace on binding
+        nextPage.setOnClickListener { mainActivity().openNewFragment() }
+
+        questionInfo = QuestionInfo(
+            description,
+            variants
+        )
+
+        binding.question = questionInfo
+        binding.variantHandler = object: VariantButtonHandler {
+            override fun onClick(variant: String) {
+                if (completed) return
+                gameLogic!!.reply(variant)
+            }
+        }
     }
 
     override fun markVariantAsRight(variantIndex: String) {
         if (completed) return
-        binding.question = QuestionInfo(
+        questionInfo = QuestionInfo(
             questionInfo.description,
             questionInfo.variants.map { if (variantIndex == it) return@map "(ДА) $it" else it }
         )
+        binding.question = questionInfo
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
         if (completed) return
-        binding.question = QuestionInfo(
+        questionInfo = QuestionInfo(
             questionInfo.description,
             questionInfo.variants.map { if (variantIndex == it) return@map "(НЕТ) $it" else it }
         )
+        binding.question = questionInfo
     }
 
     override fun showResult(resultText: String) {

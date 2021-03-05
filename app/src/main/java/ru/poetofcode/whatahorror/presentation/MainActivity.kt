@@ -14,55 +14,23 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private var logic: GameLogic? = null
-
-    @set:Inject
-    var movieProvider: LocalMovieProvider? = null
-
-    @set:Inject
-    var randHelper: RandomHelper? = null
-
     var pagerAdapter: FragmentPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerAppComponent
-            .builder()
-            .dataModule(DataModule(this))
-            .build()
-            .injectMainActivity(this)
-
         // Init view pager
         viewPager.adapter = FragmentPagerAdapter(this).apply {
             pagerAdapter = this
         }
-        // onNextPageClicked()
 
-        logic = GameLogic(movieProvider!!, randHelper!!)
-        logic?.ask()
+        openNewFragment()
     }
 
-    fun onNextQuestion(description: String, imageUrl: String, variants: List<String>) {
-        Log.d("tag", "Description: $description,\nimageUrl: $imageUrl,\nvariants: $variants")
-
-        val lastIndex = pagerAdapter?.addFragment(GameFragment().apply {
-            arguments = Bundle().apply {
-                putString("description", description)
-                putString("answer", variants[0])
-                putStringArrayList("variants", ArrayList(variants))
-            }
-        })
+    fun openNewFragment() {
+        val lastIndex = pagerAdapter?.addFragment(GameFragment())
         viewPager.setCurrentItem(lastIndex ?: return, true)
-    }
-
-    fun onNextPageClicked() {
-        logic!!.ask()
-    }
-
-    fun onVariantSelected(variant: String) {
-        logic!!.reply(variant)
     }
 
 }
