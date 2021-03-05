@@ -58,7 +58,7 @@ class GameLogicTest {
         gameLogic!!.ask()
         gameLogic!!.reply("wrong-ans")
 
-        (randHelper as FakeRandomHelper).nextStep()     // Pushing first index
+        randHelper?.nextStep()     // Pushing first index
         gameLogic?.ask()
 
         Mockito.verify(view)?.showQuestion(
