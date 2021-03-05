@@ -8,24 +8,18 @@ import ru.poetofcode.whatahorror.service.DaggerTestAppComponent
 import ru.poetofcode.whatahorror.service.FakeRandomHelper
 import ru.poetofcode.whatahorror.service.TestDataModule
 import ru.poetofcode.whatahorror.usecase.GameLogic
-import ru.poetofcode.whatahorror.usecase.IView
+import ru.poetofcode.whatahorror.usecase.GameView
 import ru.poetofcode.whatahorror.usecase.MovieProvider
 import javax.inject.Inject
 
 class GameLogicTest {
 
-    var gameLogic: GameLogic? = null
-
     // Why do you need @set? - https://stackoverflow.com/a/52342219
     @set:Inject
-    var view: IView? = null
+    var gameLogic: GameLogic? = null
 
     @set:Inject
-    var movieProvider: MovieProvider? = null
-
-    @set:Inject
-    var randHelper: RandomHelper? = null
-
+    var randHelper: FakeRandomHelper? = null
 
     @Before
     fun setUp() {
@@ -34,16 +28,16 @@ class GameLogicTest {
             .build()
 
         appComponent.injectGameLogicTest(this)
-        gameLogic = GameLogic(view!!, movieProvider!!, randHelper!!)
     }
 
     @Test
     fun `Check that ask() then reply() working as expected`() {
         Assert.assertNotNull(gameLogic)
+        val view = gameLogic!!.gameView
 
         gameLogic?.ask()
 
-        Mockito.verify(view)?.showQuestion(
+        Mockito.verify(gameLogic!!.gameView)?.showQuestion(
             "Из какого фильма этот монстр?",
             "http://test-server.com/image-1.png",
             listOf("film-1", "film-2", "film-3", "film-4")
@@ -59,6 +53,7 @@ class GameLogicTest {
     @Test
     fun `Check that ask() then reply() working as expected - second time ask`() {
         Assert.assertNotNull(gameLogic)
+        val view = gameLogic!!.gameView
 
         gameLogic!!.ask()
         gameLogic!!.reply("wrong-ans")

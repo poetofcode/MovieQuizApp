@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context=".presentation.QuestionFragment">
+        tools:context=".presentation.GameFragment">
 
         <TextView
             android:layout_width="wrap_content"

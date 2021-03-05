@@ -3,7 +3,6 @@ package ru.poetofcode.whatahorror.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
@@ -11,10 +10,9 @@ import ru.poetofcode.whatahorror.R
 import ru.poetofcode.whatahorror.data.LocalMovieProvider
 import ru.poetofcode.whatahorror.helper.RandomHelper
 import ru.poetofcode.whatahorror.usecase.GameLogic
-import ru.poetofcode.whatahorror.usecase.IView
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), IView {
+class MainActivity : AppCompatActivity() {
 
     private var logic: GameLogic? = null
 
@@ -36,20 +34,20 @@ class MainActivity : AppCompatActivity(), IView {
             .build()
             .injectMainActivity(this)
 
-        logic = GameLogic(this, movieProvider!!, randHelper!!)
-        logic?.ask()
-
         // Init view pager
         viewPager.adapter = FragmentPagerAdapter(this).apply {
             pagerAdapter = this
         }
-        onNextPageClicked()
+        // onNextPageClicked()
+
+        logic = GameLogic(movieProvider!!, randHelper!!)
+        logic?.ask()
     }
 
-    override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
+    fun onNextQuestion(description: String, imageUrl: String, variants: List<String>) {
         Log.d("tag", "Description: $description,\nimageUrl: $imageUrl,\nvariants: $variants")
 
-        val lastIndex = pagerAdapter?.addFragment(QuestionFragment().apply {
+        val lastIndex = pagerAdapter?.addFragment(GameFragment().apply {
             arguments = Bundle().apply {
                 putString("description", description)
                 putString("answer", variants[0])
@@ -57,18 +55,6 @@ class MainActivity : AppCompatActivity(), IView {
             }
         })
         viewPager.setCurrentItem(lastIndex ?: return, true)
-    }
-
-    override fun markVariantAsRight(variantIndex: String) {
-
-    }
-
-    override fun markVariantAsWrong(variantIndex: String) {
-
-    }
-
-    override fun showResult(resultText: String) {
-
     }
 
     fun onNextPageClicked() {

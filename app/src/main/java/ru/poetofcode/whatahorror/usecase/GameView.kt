@@ -1,6 +1,6 @@
 package ru.poetofcode.whatahorror.usecase
 
-interface IView {
+interface GameView {
 
     fun showQuestion(description: String, imageUrl: String, variants: List<String>)
 

@@ -1,14 +1,14 @@
 package ru.poetofcode.whatahorror.usecase
 
-import android.util.Log
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper
 
 class GameLogic(
-    private val view: IView,
     private val movieProvider: MovieProvider,
     private val randHelper: RandomHelper
 ) {
+
+    var gameView: GameView? = null
 
     private val lastQuestions: ArrayList<Question> = ArrayList()
 
@@ -20,7 +20,7 @@ class GameLogic(
         val q = lastQuestion()
         // println("Last question: $q")
 
-        view.showQuestion(q.description, q.imageUrls[0], q.variants)
+        gameView?.showQuestion(q.description, q.imageUrls[0], q.variants)
     }
 
     private fun lastQuestion(): Question {
@@ -56,13 +56,13 @@ class GameLogic(
         val q = lastQuestion()
 
         if (selectedVariant == q.rightVariant) {
-            view.markVariantAsRight(selectedVariant)
-            view.showResult("Вы угадали!")
+            gameView?.markVariantAsRight(selectedVariant)
+            gameView?.showResult("Вы угадали!")
             q.result = AnswerResult.RESULT_RIGHT
         } else {
-            view.markVariantAsWrong(selectedVariant)
-            view.markVariantAsRight(q.rightVariant)
-            view.showResult("Ответ неверный :(")
+            gameView?.markVariantAsWrong(selectedVariant)
+            gameView?.markVariantAsRight(q.rightVariant)
+            gameView?.showResult("Ответ неверный :(")
             q.result = AnswerResult.RESULT_WRONG
         }
     }
