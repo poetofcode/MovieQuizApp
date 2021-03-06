@@ -28,7 +28,6 @@ class TestDataModule {
     }
 
     @Provides
-    @Singleton
     fun provideGameLogic(
         @NotNull movieProvider: FakeMovieProvider,
         @NotNull randomHelper: FakeRandomHelper,

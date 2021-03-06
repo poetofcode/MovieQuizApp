@@ -7,6 +7,7 @@ import ru.poetofcode.whatahorror.service.DaggerTestAppComponent
 import ru.poetofcode.whatahorror.service.FakeRandomHelper
 import ru.poetofcode.whatahorror.service.TestDataModule
 import ru.poetofcode.whatahorror.usecase.GameLogic
+import java.util.AbstractMap
 import javax.inject.Inject
 
 class GameLogicTest {
@@ -38,7 +39,7 @@ class GameLogicTest {
             "Из какого фильма этот монстр?",
             "http://test-server.com/image-1.png",
             listOf("film-1", "film-2", "film-3", "film-4"),
-
+            AbstractMap.SimpleEntry(0, 8)
         )
 
         gameLogic?.reply("film-1")
@@ -63,7 +64,7 @@ class GameLogicTest {
             "Из какого фильма этот монстр?",
             "http://test-server.com/image-5.png",
             listOf("film-5", "film-6", "film-7", "film-8"),
-
+            AbstractMap.SimpleEntry(1, 8)
         )
 
         gameLogic?.reply("film-8")
