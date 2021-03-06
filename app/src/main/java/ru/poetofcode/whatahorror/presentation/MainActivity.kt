@@ -2,15 +2,8 @@ package ru.poetofcode.whatahorror.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.poetofcode.whatahorror.DaggerAppComponent
-import ru.poetofcode.whatahorror.DataModule
 import ru.poetofcode.whatahorror.R
-import ru.poetofcode.whatahorror.data.LocalMovieProvider
-import ru.poetofcode.whatahorror.helper.RandomHelper
-import ru.poetofcode.whatahorror.usecase.GameLogic
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,13 +18,16 @@ class MainActivity : AppCompatActivity() {
             pagerAdapter = this
         }
 
-        openNewFragment()
+        createNewFragment()
     }
 
-    fun openNewFragment() {
-        val lastIndex = pagerAdapter!!.addFragment(GameFragment())
-        viewPager.offscreenPageLimit = lastIndex + 1
-        viewPager.setCurrentItem(lastIndex, true)
+    fun openLastFragment() {
+        viewPager.setCurrentItem(pagerAdapter!!.lastIndex(), true)
+    }
+
+    fun createNewFragment() {
+        pagerAdapter!!.addFragment(GameFragment())
+        viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
     }
 
 }

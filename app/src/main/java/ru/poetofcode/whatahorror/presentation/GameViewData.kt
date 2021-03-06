@@ -29,14 +29,14 @@ class VariantInfo(
         }
 }
 
-class QuestionInfo(
+class GameViewData(
     val description: String,
     val imageUrl: String = "",
     val variants: List<VariantInfo> = listOf(),
-    isAnswered: Boolean = false
+    isNextVisible: Boolean = false
 ): BaseObservable()
 {
-    @Bindable var isAnswered = isAnswered
+    @Bindable var isNextVisible = isNextVisible
         set(value) {
             field = value
             notifyChange()

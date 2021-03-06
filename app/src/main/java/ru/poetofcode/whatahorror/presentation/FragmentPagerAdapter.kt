@@ -16,10 +16,10 @@ class FragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(ac
         return fragments[position]
     }
 
-    fun addFragment(fragment: Fragment): Int {
+    fun addFragment(fragment: Fragment) {
         fragments += fragment
-        notifyItemInserted(fragments.size - 1)
-        return fragments.size - 1
+        notifyItemInserted(lastIndex())
     }
 
+    fun lastIndex() = fragments.size - 1
 }

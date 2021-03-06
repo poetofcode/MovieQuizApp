@@ -1,6 +1,7 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ class GameFragment : Fragment(), GameView {
 
     private lateinit var binding: FragmentGameBinding
 
-    private lateinit var questionInfo: QuestionInfo
+    private lateinit var gameViewData: GameViewData
 
     @set:Inject
     var gameLogic: GameLogic? = null
@@ -44,7 +45,7 @@ class GameFragment : Fragment(), GameView {
 
         binding.variantHandler = object: VariantButtonHandler {
             override fun onClick(variant: String) {
-                if (questionInfo.isAnswered) return
+                if (gameViewData.isNextVisible) return
                 gameLogic!!.reply(variant)
             }
         }
@@ -58,23 +59,21 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
-        // if (questionInfo.isAnswered) return
-
-        questionInfo = QuestionInfo(
+        gameViewData = GameViewData(
             description,
             imageUrl,
             variants.map { VariantInfo(it, R.color.colorNotAnswered, R.color.colorDark) }
         )
-        binding.question = questionInfo
+        binding.question = gameViewData
 
         // TODO replace on binding
-        nextPage.setOnClickListener { mainActivity().openNewFragment() }
+        nextPage.setOnClickListener { mainActivity().openLastFragment() }
     }
 
     override fun markVariantAsRight(variantIndex: String) {
-        if (questionInfo.isAnswered) return
+        Log.d("tag", "markVariantAsRight() => $variantIndex")
 
-        questionInfo.variants.forEach {
+        gameViewData.variants.forEach {
             if (variantIndex == it.name) {
                 it.color = R.color.colorRight
                 it.textColor = R.color.colorLight
@@ -84,9 +83,9 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
-        if (questionInfo.isAnswered) return
+        Log.d("tag", "markVariantAsWrong() => $variantIndex")
 
-        questionInfo.variants.forEach {
+        gameViewData.variants.forEach {
             if (variantIndex == it.name) {
                 it.color = R.color.colorWrong
                 it.textColor = R.color.colorLight
@@ -97,7 +96,10 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun showResult(resultText: String) {
-        questionInfo.isAnswered = true
+        Log.d("tag", "showResult() => $resultText")
+
+        mainActivity().createNewFragment()
+        gameViewData.isNextVisible = true
     }
 
 }
