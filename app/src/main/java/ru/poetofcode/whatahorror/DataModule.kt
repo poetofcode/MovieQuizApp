@@ -31,8 +31,8 @@ class DataModule(private val context: Context) {
         return Gson()
     }
 
-    @Provides
     @Singleton
+    @Provides
     fun provideGameLogic(
         @NotNull movieProvider: LocalMovieProvider,
         @NotNull randomHelper: RandomHelper

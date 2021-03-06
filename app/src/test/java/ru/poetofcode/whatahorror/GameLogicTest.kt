@@ -3,13 +3,10 @@ package ru.poetofcode.whatahorror
 import org.junit.*
 import org.mockito.Mockito
 import org.mockito.Mockito.times
-import ru.poetofcode.whatahorror.helper.RandomHelper
 import ru.poetofcode.whatahorror.service.DaggerTestAppComponent
 import ru.poetofcode.whatahorror.service.FakeRandomHelper
 import ru.poetofcode.whatahorror.service.TestDataModule
 import ru.poetofcode.whatahorror.usecase.GameLogic
-import ru.poetofcode.whatahorror.usecase.GameView
-import ru.poetofcode.whatahorror.usecase.MovieProvider
 import javax.inject.Inject
 
 class GameLogicTest {
@@ -40,7 +37,8 @@ class GameLogicTest {
         Mockito.verify(gameLogic!!.gameView)?.showQuestion(
             "Из какого фильма этот монстр?",
             "http://test-server.com/image-1.png",
-            listOf("film-1", "film-2", "film-3", "film-4")
+            listOf("film-1", "film-2", "film-3", "film-4"),
+
         )
 
         gameLogic?.reply("film-1")
@@ -64,7 +62,8 @@ class GameLogicTest {
         Mockito.verify(view)?.showQuestion(
             "Из какого фильма этот монстр?",
             "http://test-server.com/image-5.png",
-            listOf("film-5", "film-6", "film-7", "film-8")
+            listOf("film-5", "film-6", "film-7", "film-8"),
+
         )
 
         gameLogic?.reply("film-8")

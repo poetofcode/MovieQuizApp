@@ -2,6 +2,7 @@ package ru.poetofcode.whatahorror.usecase
 
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper
+import java.util.*
 
 class GameLogic(
     private val movieProvider: MovieProvider,
@@ -10,7 +11,7 @@ class GameLogic(
 
     var gameView: GameView? = null
 
-    private val lastQuestions: ArrayList<Question> = ArrayList()
+    private val lastQuestions = mutableListOf<Question>()
 
     init {
         resetGame()
@@ -20,14 +21,19 @@ class GameLogic(
         val q = lastQuestion()
         // println("Last question: $q")
 
-        gameView?.showQuestion(q.description, q.imageUrls[0], q.variants)
+        gameView?.showQuestion(
+            q.description,
+            q.imageUrls[0],
+            q.variants,
+            AbstractMap.SimpleEntry(lastQuestions.count { it.result.isAnswered() }, movieProvider.count())
+        )
     }
 
     private fun lastQuestion(): Question {
         if (lastQuestions.size > 0 && !lastQuestions.last().result.isAnswered()) {
             return lastQuestions.last()
         }
-        lastQuestions.add(createQuestion())
+        lastQuestions += createQuestion()
 
         return lastQuestions.last()
     }
