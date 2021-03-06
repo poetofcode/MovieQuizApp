@@ -66,7 +66,7 @@ class GameFragment : Fragment(), GameView {
         questionInfo = QuestionInfo(
             description,
             imageUrl,
-            variants.map { VariantInfo(it) }
+            variants.map { VariantInfo(it, R.color.colorNotAnswered) }
         )
         binding.question = questionInfo
 
@@ -79,7 +79,7 @@ class GameFragment : Fragment(), GameView {
 
         questionInfo.variants.forEach {
             if (variantIndex == it.name) {
-                it.name = "(ДА) ${it.name}"
+                it.color = R.color.colorRight
                 return@forEach
             }
         }
@@ -90,7 +90,7 @@ class GameFragment : Fragment(), GameView {
 
         questionInfo.variants.forEach {
             if (variantIndex == it.name) {
-                it.name = "(НЕТ) ${it.name}"
+                it.color = R.color.colorWrong
                 return@forEach
             }
         }
