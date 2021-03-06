@@ -5,7 +5,7 @@
     <data>
         <variable
             name="variant"
-            type="java.lang.String" />
+            type="ru.poetofcode.whatahorror.presentation.VariantInfo" />
 
         <variable
             name="handler"
@@ -16,9 +16,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@{variant}"
+            android:text="@{variant.name}"
             app:layout_flexBasisPercent="50%"
-            android:onClick="@{() -> handler.onClick(variant)}" />
+            android:onClick="@{() -> handler.onClick(variant.name)}" />
     </merge>
 
 </layout>

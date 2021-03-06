@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
@@ -44,6 +45,13 @@ class GameFragment : Fragment(), GameView {
             .build()
             .injectGameFragment(this)
 
+        binding.variantHandler = object: VariantButtonHandler {
+            override fun onClick(variant: String) {
+                if (completed) return
+                gameLogic!!.reply(variant)
+            }
+        }
+
         gameLogic!!.gameView = this
         gameLogic!!.ask()
     }
@@ -55,42 +63,35 @@ class GameFragment : Fragment(), GameView {
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
         if (completed) return
 
-        // TODO replace on binding
-        nextPage.setOnClickListener { mainActivity().openNewFragment() }
-
         questionInfo = QuestionInfo(
             description,
             imageUrl,
-            variants
+            variants.map { VariantInfo(it) }
         )
-
         binding.question = questionInfo
-        binding.variantHandler = object: VariantButtonHandler {
-            override fun onClick(variant: String) {
-                if (completed) return
-                gameLogic!!.reply(variant)
-            }
-        }
+
+        // TODO replace on binding
+        nextPage.setOnClickListener { mainActivity().openNewFragment() }
     }
 
     override fun markVariantAsRight(variantIndex: String) {
         if (completed) return
-        questionInfo = QuestionInfo(
-            questionInfo.description,
-            questionInfo.imageUrl,
-            questionInfo.variants.map { if (variantIndex == it) return@map "(ДА) $it" else it }
-        )
-        binding.question = questionInfo
+        questionInfo.variants = questionInfo.variants.map {
+            if (variantIndex == it.name)
+                VariantInfo("(ДА) ${it.name}")
+            else
+                it
+        }
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
         if (completed) return
-        questionInfo = QuestionInfo(
-            questionInfo.description,
-            questionInfo.imageUrl,
-            questionInfo.variants.map { if (variantIndex == it) return@map "(НЕТ) $it" else it }
-        )
-        binding.question = questionInfo
+        questionInfo.variants = questionInfo.variants.map {
+            if (variantIndex == it.name)
+                VariantInfo("(НЕТ) ${it.name}")
+            else
+                it
+        }
     }
 
     override fun showResult(resultText: String) {
