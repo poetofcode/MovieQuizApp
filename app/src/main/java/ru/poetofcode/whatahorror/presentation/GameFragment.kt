@@ -45,13 +45,12 @@ class GameFragment : Fragment(), GameView {
 
         binding.variantHandler = object: VariantButtonHandler {
             override fun onClick(variant: String) {
-                if (gameViewData.isNextVisible) return
-                gameLogic!!.reply(variant)
+                gameLogic?.reply(variant)
             }
         }
 
-        gameLogic!!.gameView = this
-        gameLogic!!.ask()
+        gameLogic?.gameView = this
+        gameLogic?.ask()
     }
 
     private fun mainActivity(): MainActivity {
@@ -71,8 +70,6 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun markVariantAsRight(variantIndex: String) {
-        Log.d("tag", "markVariantAsRight() => $variantIndex")
-
         gameViewData.variants.forEach {
             if (variantIndex == it.name) {
                 it.color = R.color.colorRight
@@ -83,8 +80,6 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
-        Log.d("tag", "markVariantAsWrong() => $variantIndex")
-
         gameViewData.variants.forEach {
             if (variantIndex == it.name) {
                 it.color = R.color.colorWrong
@@ -96,10 +91,9 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun showResult(resultText: String) {
-        Log.d("tag", "showResult() => $resultText")
-
         mainActivity().createNewFragment()
         gameViewData.isNextVisible = true
+        gameLogic = null
     }
 
 }
