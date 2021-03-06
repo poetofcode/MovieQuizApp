@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
@@ -23,8 +22,6 @@ class GameFragment : Fragment(), GameView {
     private lateinit var binding: FragmentGameBinding
 
     private lateinit var questionInfo: QuestionInfo
-
-    private var completed = false
 
     @set:Inject
     var gameLogic: GameLogic? = null
@@ -47,7 +44,7 @@ class GameFragment : Fragment(), GameView {
 
         binding.variantHandler = object: VariantButtonHandler {
             override fun onClick(variant: String) {
-                if (completed) return
+                if (questionInfo.isAnswered) return
                 gameLogic!!.reply(variant)
             }
         }
@@ -61,7 +58,7 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun showQuestion(description: String, imageUrl: String, variants: List<String>) {
-        if (completed) return
+        // if (questionInfo.isAnswered) return
 
         questionInfo = QuestionInfo(
             description,
@@ -75,7 +72,7 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun markVariantAsRight(variantIndex: String) {
-        if (completed) return
+        if (questionInfo.isAnswered) return
 
         questionInfo.variants.forEach {
             if (variantIndex == it.name) {
@@ -87,7 +84,7 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
-        if (completed) return
+        if (questionInfo.isAnswered) return
 
         questionInfo.variants.forEach {
             if (variantIndex == it.name) {
@@ -100,7 +97,7 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun showResult(resultText: String) {
-        completed = true
+        questionInfo.isAnswered = true
     }
 
 }

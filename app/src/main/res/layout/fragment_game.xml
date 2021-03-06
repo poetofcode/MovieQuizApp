@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+
         <variable
             name="question"
             type="ru.poetofcode.whatahorror.presentation.QuestionInfo" />
@@ -63,10 +65,11 @@
             android:id="@+id/nextPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Далее >>"
+            android:text="@string/nextButton"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:padding="20dp"/>
+            android:padding="20dp"
+            android:visibility="@{question.answered ? View.VISIBLE : View.GONE}"/>
 
     </LinearLayout>
 </layout>

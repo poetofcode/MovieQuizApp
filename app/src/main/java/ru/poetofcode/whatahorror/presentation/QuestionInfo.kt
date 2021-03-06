@@ -32,5 +32,13 @@ class VariantInfo(
 class QuestionInfo(
     val description: String,
     val imageUrl: String = "",
-    val variants: List<VariantInfo> = listOf()
-)
+    val variants: List<VariantInfo> = listOf(),
+    isAnswered: Boolean = false
+): BaseObservable()
+{
+    @Bindable var isAnswered = isAnswered
+        set(value) {
+            field = value
+            notifyChange()
+        }
+}
