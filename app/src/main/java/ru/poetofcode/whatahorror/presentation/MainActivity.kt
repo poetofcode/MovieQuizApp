@@ -29,8 +29,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openNewFragment() {
-        val lastIndex = pagerAdapter?.addFragment(GameFragment())
-        viewPager.setCurrentItem(lastIndex ?: return, true)
+        val lastIndex = pagerAdapter!!.addFragment(GameFragment())
+        viewPager.offscreenPageLimit = lastIndex + 1
+        viewPager.setCurrentItem(lastIndex, true)
     }
 
 }
