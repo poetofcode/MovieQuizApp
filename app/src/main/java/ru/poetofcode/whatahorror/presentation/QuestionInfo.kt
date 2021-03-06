@@ -4,19 +4,26 @@ import androidx.annotation.ColorRes
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
-data class VariantInfo(
-    val name: String,
-    @ColorRes val color: Int? = null
-)
+class VariantInfo(
+    name: String,
+    color: Int? = null
+): BaseObservable()
+{
+    @Bindable var name = name
+        set(value) {
+            field = value
+            notifyChange()
+        }
 
-class QuestionInfo(
-    var description: String,
-    var imageUrl: String = "",
-    variants: List<VariantInfo> = listOf()
-) : BaseObservable() {
-    @Bindable var variants: List<VariantInfo> = variants
+    @Bindable @ColorRes var color = color
         set(value) {
             field = value
             notifyChange()
         }
 }
+
+class QuestionInfo(
+    val description: String,
+    val imageUrl: String = "",
+    val variants: List<VariantInfo> = listOf()
+)

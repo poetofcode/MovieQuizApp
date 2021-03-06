@@ -76,22 +76,25 @@ class GameFragment : Fragment(), GameView {
 
     override fun markVariantAsRight(variantIndex: String) {
         if (completed) return
-        questionInfo.variants = questionInfo.variants.map {
-            if (variantIndex == it.name)
-                VariantInfo("(ДА) ${it.name}")
-            else
-                it
+
+        questionInfo.variants.forEach {
+            if (variantIndex == it.name) {
+                it.name = "(ДА) ${it.name}"
+                return@forEach
+            }
         }
     }
 
     override fun markVariantAsWrong(variantIndex: String) {
         if (completed) return
-        questionInfo.variants = questionInfo.variants.map {
-            if (variantIndex == it.name)
-                VariantInfo("(НЕТ) ${it.name}")
-            else
-                it
+
+        questionInfo.variants.forEach {
+            if (variantIndex == it.name) {
+                it.name = "(НЕТ) ${it.name}"
+                return@forEach
+            }
         }
+
     }
 
     override fun showResult(resultText: String) {
