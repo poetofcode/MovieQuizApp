@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@{variant.name}"
-            app:backgroundResource="@{variant.color}"
+            android:textColor="@{context.getColor(variant.textColor)}"
+            android:background="@{context.getColor(variant.color)}"
             android:onClick="@{() -> handler.onClick(variant.name)}"
             app:layout_flexBasisPercent="50%" />
     </merge>

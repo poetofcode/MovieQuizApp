@@ -6,7 +6,8 @@ import androidx.databinding.Bindable
 
 class VariantInfo(
     name: String,
-    color: Int? = null
+    color: Int? = null,
+    textColor: Int? = null
 ): BaseObservable()
 {
     @Bindable var name = name
@@ -16,6 +17,12 @@ class VariantInfo(
         }
 
     @Bindable @ColorRes var color = color
+        set(value) {
+            field = value
+            notifyChange()
+        }
+
+    @Bindable @ColorRes var textColor = textColor
         set(value) {
             field = value
             notifyChange()
