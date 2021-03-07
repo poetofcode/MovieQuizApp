@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_game.*
 import ru.poetofcode.whatahorror.R
 import ru.poetofcode.whatahorror.databinding.FragmentGameBinding
 import ru.poetofcode.whatahorror.usecase.GameView
-import java.util.*
+import ru.poetofcode.whatahorror.usecase.Question
 
 // How to use data-binding with Fragment: https://stackoverflow.com/a/34719627
 
@@ -47,19 +47,8 @@ class GameFragment : Fragment(), GameView {
         return requireActivity() as MainActivity
     }
 
-    override fun showQuestion(
-        description: String,
-        imageUrl: String,
-        variants: List<String>,
-        counterPair: AbstractMap.SimpleEntry<Int, Int>
-    ) {
-        mainActivity().title = "Завершено ${counterPair.key} из ${counterPair.value}"
-
-        gameViewData = GameViewData(
-            description,
-            imageUrl,
-            variants.map { VariantInfo(it, R.color.colorNotAnswered, R.color.colorDark) }
-        )
+    override fun showQuestion(question: Question) {
+        gameViewData = GameViewData.fromQuestion(question)
         binding.question = gameViewData
 
         // TODO replace on binding
@@ -87,9 +76,15 @@ class GameFragment : Fragment(), GameView {
 
     }
 
-    override fun showResult(resultText: String) {
-        mainActivity().createNewFragment()
+    override fun showResult(answeredCount: Int, totalCount: Int) {
+        mainActivity().title = "Завершено $answeredCount из $totalCount"
         gameViewData.isNextVisible = true
+
+        if (answeredCount < totalCount) {
+            mainActivity().createGameFragment()
+        } else {
+            mainActivity().createScoreFragment()
+        }
     }
 
 }

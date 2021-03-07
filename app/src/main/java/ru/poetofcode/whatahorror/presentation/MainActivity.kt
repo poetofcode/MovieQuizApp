@@ -2,6 +2,7 @@ package ru.poetofcode.whatahorror.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
@@ -31,16 +32,20 @@ class MainActivity : AppCompatActivity() {
             pagerAdapter = this
         }
 
-        createNewFragment()
+        createGameFragment()
     }
 
     fun openLastFragment() {
         viewPager.setCurrentItem(pagerAdapter!!.lastIndex(), true)
     }
 
-    fun createNewFragment() {
+    fun createGameFragment() {
         pagerAdapter!!.addFragment(GameFragment())
         viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
+    }
+
+    fun createScoreFragment() {
+        Log.d("tag", "Invoked createScoreFragment()")
     }
 
 }

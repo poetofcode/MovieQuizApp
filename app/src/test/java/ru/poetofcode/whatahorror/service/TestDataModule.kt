@@ -12,7 +12,6 @@ import javax.inject.Singleton
 class TestDataModule {
 
     @Provides
-    @Singleton
     fun provideRandomHelper(): FakeRandomHelper {
         return FakeRandomHelper()
     }

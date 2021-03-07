@@ -1,9 +1,7 @@
 package ru.poetofcode.whatahorror.usecase
 
-import android.util.Log
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper
-import java.util.*
 
 class GameLogic(
     private val movieProvider: MovieProvider,
@@ -14,22 +12,18 @@ class GameLogic(
 
     private val lastQuestions = mutableListOf<Question>()
 
-    private val usedMovieindexes = mutableListOf<Int>()
+    private val usedMovieIndexes = mutableListOf<Int>()
 
     init {
         resetGame()
     }
 
     fun ask() {
-        val q = lastQuestion()
-        // println("Last question: $q")
+        if (answeredCount() >= movieProvider.count()) {
+            return
+        }
 
-        gameView?.showQuestion(
-            q.description,
-            q.imageUrls[0],
-            q.variants,
-            AbstractMap.SimpleEntry(lastQuestions.count { it.result.isAnswered() }, movieProvider.count())
-        )
+        gameView?.showQuestion(lastQuestion())
     }
 
     private fun lastQuestion(): Question {
@@ -41,14 +35,16 @@ class GameLogic(
         return lastQuestions.last()
     }
 
+    private fun answeredCount() = lastQuestions.count { it.result.isAnswered() }
+
     private fun createQuestion(): Question {
         val count = movieProvider.count()
         val indexes = mutableListOf<Int>()
         val movies = mutableListOf<Movie>()
 
         // Select unused movie as right variant
-        indexes += randHelper.fromRange(0 until count, usedMovieindexes)
-        usedMovieindexes += indexes.last()
+        indexes += randHelper.fromRange(0 until count, usedMovieIndexes)
+        usedMovieIndexes += indexes.last()
         movies += movieProvider.movie(indexes.last())
         val movie = movies.last()
 
@@ -73,14 +69,13 @@ class GameLogic(
 
         if (selectedVariant == q.rightVariant) {
             gameView?.markVariantAsRight(selectedVariant)
-            gameView?.showResult("Вы угадали!")
             q.result = AnswerResult.RESULT_RIGHT
         } else {
             gameView?.markVariantAsWrong(selectedVariant)
             gameView?.markVariantAsRight(q.rightVariant)
-            gameView?.showResult("Ответ неверный :(")
             q.result = AnswerResult.RESULT_WRONG
         }
+        gameView?.showResult(answeredCount(), movieProvider.count())
     }
 
     fun resetGame() {
