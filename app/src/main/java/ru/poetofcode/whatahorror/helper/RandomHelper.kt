@@ -9,9 +9,8 @@ open class RandomHelper {
             exceptList?.find { value == it } == null
         }
 
-        // println(filteredList)
-
-        return filteredList[Random.nextInt(filteredList.size)]
+        val rndIdx = Random.nextInt(filteredList.size)
+        return filteredList[rndIdx]
     }
 
 }

@@ -1,5 +1,6 @@
 package ru.poetofcode.whatahorror.usecase
 
+import android.util.Log
 import ru.poetofcode.whatahorror.data.Movie
 import ru.poetofcode.whatahorror.helper.RandomHelper
 import java.util.*
@@ -12,6 +13,8 @@ class GameLogic(
     var gameView: GameView? = null
 
     private val lastQuestions = mutableListOf<Question>()
+
+    private val usedMovieindexes = mutableListOf<Int>()
 
     init {
         resetGame()
@@ -43,18 +46,25 @@ class GameLogic(
         val indexes = mutableListOf<Int>()
         val movies = mutableListOf<Movie>()
 
-        for (i in 1..4) {
+        // Select unused movie as right variant
+        indexes += randHelper.fromRange(0 until count, usedMovieindexes)
+        usedMovieindexes += indexes.last()
+        movies += movieProvider.movie(indexes.last())
+        val movie = movies.last()
+
+        // Select other wrong variants
+        for (i in 1..3) {
             indexes += randHelper.fromRange(0 until count, indexes)
             movies += movieProvider.movie(indexes.last())
         }
 
-        val rightIndex = randHelper.fromRange(0 until movies.size)
+        movies.shuffle()
 
         return Question(
             description = "Из какого фильма этот монстр?",
-            imageUrls = movies[rightIndex].imageUrls,
+            imageUrls = movie.imageUrls,
             variants = movies.map { it.name },
-            rightVariant = movies[rightIndex].name
+            rightVariant = movie.name
         )
     }
 
