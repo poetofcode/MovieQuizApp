@@ -29,6 +29,7 @@ class GameLogicTest {
         appComponent.injectGameLogicTest(this)
     }
 
+    @Ignore
     @Test
     fun `Check that ask() then reply() working as expected`() {
         Assert.assertNotNull(gameLogic)

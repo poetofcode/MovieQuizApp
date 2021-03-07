@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
 import ru.poetofcode.whatahorror.R
+import ru.poetofcode.whatahorror.ScoreFragment
 import ru.poetofcode.whatahorror.usecase.GameLogic
 import javax.inject.Inject
 
@@ -45,7 +46,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun createScoreFragment() {
-        Log.d("tag", "Invoked createScoreFragment()")
+        // Log.d("tag", "Invoked createScoreFragment()")
+        pagerAdapter!!.addFragment(ScoreFragment())
+        viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
     }
 
 }
