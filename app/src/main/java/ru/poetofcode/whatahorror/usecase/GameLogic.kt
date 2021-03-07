@@ -80,6 +80,7 @@ class GameLogic(
 
     fun resetGame() {
         lastQuestions.clear()
+        usedMovieIndexes.clear()
     }
 
     fun score(): Score? {

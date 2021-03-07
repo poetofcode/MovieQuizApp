@@ -1,13 +1,13 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import ru.poetofcode.whatahorror.R
-import ru.poetofcode.whatahorror.databinding.FragmentGameBinding
 import ru.poetofcode.whatahorror.databinding.FragmentScoreBinding
 import ru.poetofcode.whatahorror.usecase.Score
 import ru.poetofcode.whatahorror.usecase.WinnerRank
@@ -54,6 +54,14 @@ class ScoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.score = ScoreViewData.fromScore(gameLogic().score()!!)
+        binding.restartHandler = object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                Log.d("tag", "restartHandler(): on click")
+
+
+                mainActivity().restartGame()
+            }
+        }
     }
 
     private fun gameLogic() = mainActivity().gameLogic!!

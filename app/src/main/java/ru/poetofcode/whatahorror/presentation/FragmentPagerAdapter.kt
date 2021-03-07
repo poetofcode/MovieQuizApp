@@ -12,6 +12,10 @@ class FragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(ac
         return fragments.size
     }
 
+    override fun getItemId(position: Int): Long {
+        return fragments[position].hashCode().toLong() // make sure notifyDataSetChanged() works
+    }
+
     override fun createFragment(position: Int): Fragment {
         return fragments[position]
     }
@@ -22,4 +26,9 @@ class FragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(ac
     }
 
     fun lastIndex() = fragments.size - 1
+
+    fun clearFragments() {
+        fragments.clear()
+        notifyDataSetChanged()
+    }
 }

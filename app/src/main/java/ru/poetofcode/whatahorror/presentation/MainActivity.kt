@@ -49,4 +49,11 @@ class MainActivity : AppCompatActivity() {
         viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
     }
 
+    fun restartGame() {
+        pagerAdapter!!.clearFragments()
+        title = resources.getString(R.string.app_name)
+        gameLogic?.resetGame()
+        createGameFragment()
+    }
+
 }
