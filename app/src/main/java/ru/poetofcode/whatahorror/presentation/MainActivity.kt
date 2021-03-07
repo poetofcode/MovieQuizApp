@@ -2,12 +2,10 @@ package ru.poetofcode.whatahorror.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
 import ru.poetofcode.whatahorror.R
-import ru.poetofcode.whatahorror.ScoreFragment
 import ru.poetofcode.whatahorror.usecase.GameLogic
 import javax.inject.Inject
 

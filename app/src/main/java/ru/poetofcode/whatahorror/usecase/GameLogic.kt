@@ -82,4 +82,17 @@ class GameLogic(
         lastQuestions.clear()
     }
 
+    fun score(): Score? {
+        if (answeredCount() < movieProvider.count()) {
+            return null
+        }
+
+        val rightCount = lastQuestions.count { it.result.isRight() }
+        return Score(
+            rightCount,
+            movieProvider.count(),
+            WinnerRank.createRank(rightCount, movieProvider.count())
+        )
+    }
+
 }
