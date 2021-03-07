@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="score"
+            type="ru.poetofcode.whatahorror.presentation.ScoreViewData" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ScoreFragment"
+        android:background="@color/scoreBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/content_padding">
+
+            <ImageView
+                android:layout_width="@dimen/rewardWidth"
+                android:layout_height="@dimen/rewardHeight"
+                android:scaleType="centerInside"
+                app:imageUrl="@{score.rewardImageUrl}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Поздравляем!\nВам присуждается звание"
+                android:textColor="@color/colorLight"
+                android:textSize="@dimen/fontMedium"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{score.winnerTitle}'
+                android:textColor="@color/colorWinnerTitle"
+                android:textSize="@dimen/fontBig"
+                tools:text="ЗВАНИЕ"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginTop="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{String.valueOf("за " + score.answerRightCount + " из " + score.answerTotalCount) + "\nугаданных монстров"}'
+                android:textColor="@color/colorLight"
+                android:textSize="@dimen/fontMedium"
+                android:textAlignment="center"
+                android:layout_marginTop="30dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

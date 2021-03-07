@@ -1,5 +1,6 @@
 package ru.poetofcode.whatahorror.usecase
 
+import android.util.Log
 import kotlin.math.roundToInt
 
 enum class WinnerRank {
@@ -10,12 +11,13 @@ enum class WinnerRank {
 
     companion object {
         fun createRank(rightCount: Int, totalCount: Int): WinnerRank {
-            val percent = (rightCount / totalCount * 100).toDouble().roundToInt()
+            val percent = (rightCount.toDouble() / totalCount.toDouble() * 100).roundToInt()
+            Log.d("tag", "Percent: $percent")
             return when {
-                percent < 100 -> WINNER_GOLD
-                percent < 90 -> WINNER_SILVER
-                percent < 60 -> WINNER_BRONZE
-                else -> WINNER_BEST
+                percent > 99 -> WINNER_BEST
+                percent in 70..99 -> WINNER_GOLD
+                percent in 40..69 -> WINNER_SILVER
+                else -> WINNER_BRONZE
             }
         }
     }

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity"
-    android:background="@color/mainBackground"
-    android:padding="8dp">
+    android:background="@color/mainBackground">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

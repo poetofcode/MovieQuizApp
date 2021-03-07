@@ -13,7 +13,7 @@ fun loadImage(imageView: ImageView, imageUrl: String) {
     // Picasso.get().setIndicatorsEnabled(true)
     Picasso.get()
         .load(imageUrl)
-        .resizeDimen(R.dimen.imageWidth, R.dimen.imageHeight)
+        .resize(imageView.width, imageView.height)
         .centerCrop()
         // .placeholder(R.drawable.user_placeholder)
         // .error(R.drawable.user_placeholder_error)

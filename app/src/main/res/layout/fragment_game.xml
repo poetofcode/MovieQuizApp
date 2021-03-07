@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            tools:context=".presentation.GameFragment">
+            tools:context=".presentation.GameFragment"
+            android:padding="@dimen/content_padding">
 
             <TextView
                 android:layout_width="wrap_content"

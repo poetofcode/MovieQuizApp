@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import ru.poetofcode.whatahorror.R
+import ru.poetofcode.whatahorror.databinding.FragmentGameBinding
+import ru.poetofcode.whatahorror.databinding.FragmentScoreBinding
 import ru.poetofcode.whatahorror.usecase.Score
 import ru.poetofcode.whatahorror.usecase.WinnerRank
 
@@ -23,12 +26,12 @@ class ScoreViewData(
                 s.answerRightCount,
                 s.answerTotalCount,
                 when (s.winnerRank) {
-                    WinnerRank.WINNER_BEST -> "ЧЕМПИОН"
-                    WinnerRank.WINNER_GOLD -> "ЗНАТОК"
-                    WinnerRank.WINNER_SILVER -> "ЛЮБИТЕЛЬ"
-                    else -> "НОВИЧОК"
+                    WinnerRank.WINNER_BEST -> "ФАНАТ УЖАСТИКОВ"
+                    WinnerRank.WINNER_GOLD -> "ОПАСНЫЙ ЗНАТОК"
+                    WinnerRank.WINNER_SILVER -> "ЛЮБИТЕЛЬ КОШМАРОВ"
+                    else -> "ПУГЛИВЫЙ НОВИЧОК"
                 },
-                "REWARD_URL",
+                "file:///android_asset/award.png",
                 "GITHUB_URL"
             )
         }
@@ -37,11 +40,26 @@ class ScoreViewData(
 
 class ScoreFragment : Fragment() {
 
+    private lateinit var binding: FragmentScoreBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_score, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_score, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.score = ScoreViewData.fromScore(gameLogic().score()!!)
+    }
+
+    private fun gameLogic() = mainActivity().gameLogic!!
+
+    private fun mainActivity(): MainActivity {
+        return requireActivity() as MainActivity
+    }
+
 }
