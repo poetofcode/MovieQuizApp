@@ -3,24 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+
         <variable
             name="variant"
             type="ru.poetofcode.whatahorror.presentation.VariantInfo" />
 
         <variable
             name="handler"
-            type="ru.poetofcode.whatahorror.presentation.VariantButtonHandler" />
+            type="ru.poetofcode.whatahorror.presentation.VariantTouchHandler" />
+
     </data>
     
     <merge>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@{variant.name}"
             android:textColor="@{context.getColor(variant.textColor)}"
             android:background="@{context.getColor(variant.color)}"
-            android:onClick="@{() -> handler.onClick(variant.name)}"
+            app:onTouch="@{handler.createTouchListener(variant.name)}"
             app:layout_flexBasisPercent="50%" />
     </merge>
+
+    <!-- android:="@{() -> handler.onClick(variant.name)}" -->
 
 </layout>

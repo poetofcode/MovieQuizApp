@@ -1,6 +1,8 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
@@ -18,4 +20,10 @@ fun loadImage(imageView: ImageView, imageUrl: String) {
         // .placeholder(R.drawable.user_placeholder)
         // .error(R.drawable.user_placeholder_error)
         .into(imageView)
+
+}
+
+@BindingAdapter(*["app:onTouch"])
+fun onTouch(button: Button, touchListener: View.OnTouchListener) {
+    button.setOnTouchListener(touchListener)
 }

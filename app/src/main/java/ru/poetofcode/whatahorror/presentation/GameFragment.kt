@@ -1,7 +1,9 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -30,10 +32,17 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.variantHandler = object: VariantButtonHandler {
-            override fun onClick(variant: String) {
-                if (gameViewData.isNextVisible) return
-                gameLogic().reply(variant)
+        binding.variantHandler = object: VariantTouchHandler {
+            override fun createTouchListener(variant: String): View.OnTouchListener {
+                return View.OnTouchListener { v, event ->
+                    if (event.action != MotionEvent.ACTION_DOWN
+                        || gameViewData.isNextVisible) {
+                        return@OnTouchListener false
+                    }
+                    gameLogic().reply(variant)
+                    v.performClick()
+                    true
+                }
             }
         }
 

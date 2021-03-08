@@ -11,7 +11,8 @@
 
         <variable
             name="variantHandler"
-            type="ru.poetofcode.whatahorror.presentation.VariantButtonHandler" />
+            type="ru.poetofcode.whatahorror.presentation.VariantTouchHandler" />
+
     </data>
 
     <ScrollView
@@ -45,24 +46,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:flexWrap="wrap"
-                app:alignItems="center"
+                app:alignItems="stretch"
                 app:alignContent="center">
 
                 <include layout="@layout/question_button"
                     app:variant="@{question.variants.get(0)}"
-                    app:handler="@{variantHandler}" />
+                    app:handler="@{variantHandler}"/>
 
                 <include layout="@layout/question_button"
                     app:variant="@{question.variants.get(1)}"
-                    app:handler="@{variantHandler}" />
+                    app:handler="@{variantHandler}"/>
 
                 <include layout="@layout/question_button"
                     app:variant="@{question.variants.get(2)}"
-                    app:handler="@{variantHandler}" />
+                    app:handler="@{variantHandler}"/>
 
                 <include layout="@layout/question_button"
                     app:variant="@{question.variants.get(3)}"
-                    app:handler="@{variantHandler}" />
+                    app:handler="@{variantHandler}"/>
 
             </com.google.android.flexbox.FlexboxLayout>
 
