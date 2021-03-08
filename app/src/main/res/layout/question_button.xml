@@ -20,12 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@{variant.name}"
+            android:background="@drawable/variant_bg"
             android:textColor="@{context.getColor(variant.textColor)}"
-            android:background="@{context.getColor(variant.color)}"
+            android:tint="@{context.getColor(variant.color)}"
             app:onTouch="@{handler.createTouchListener(variant.name)}"
             app:layout_flexBasisPercent="50%" />
     </merge>
 
     <!-- android:="@{() -> handler.onClick(variant.name)}" -->
+    <!-- android:background="@{context.getColor(variant.color)}" -->
 
 </layout>

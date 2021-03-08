@@ -1,12 +1,16 @@
 package ru.poetofcode.whatahorror.presentation
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
-import ru.poetofcode.whatahorror.R
 
 @BindingAdapter("app:imageUrl")
 fun loadImage(imageView: ImageView, imageUrl: String) {
@@ -24,6 +28,13 @@ fun loadImage(imageView: ImageView, imageUrl: String) {
 }
 
 @BindingAdapter(*["app:onTouch"])
-fun onTouch(button: Button, touchListener: View.OnTouchListener) {
-    button.setOnTouchListener(touchListener)
+fun onTouch(view: View, touchListener: View.OnTouchListener) {
+    view.setOnTouchListener(touchListener)
+}
+
+@BindingAdapter("android:tint")
+fun setImageTint(view: View, @ColorInt color: Int) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        view.backgroundTintList = ColorStateList.valueOf(color)
+    }
 }
