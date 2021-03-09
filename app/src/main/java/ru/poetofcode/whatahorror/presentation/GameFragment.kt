@@ -35,7 +35,7 @@ class GameFragment : Fragment(), GameView {
         binding.variantHandler = object: VariantTouchHandler {
             override fun createTouchListener(variant: String): View.OnTouchListener {
                 return View.OnTouchListener { v, event ->
-                    if (event.action != MotionEvent.ACTION_DOWN
+                    if (event.action != MotionEvent.ACTION_UP
                         || gameViewData.isNextVisible) {
                         return@OnTouchListener false
                     }

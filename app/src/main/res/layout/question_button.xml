@@ -19,15 +19,16 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@{variant.name}"
             android:background="@drawable/variant_bg"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:textStyle="normal"
+            android:textSize="@dimen/fontSmall"
+            android:text="@{variant.name}"
             android:textColor="@{context.getColor(variant.textColor)}"
             android:tint="@{context.getColor(variant.color)}"
             app:onTouch="@{handler.createTouchListener(variant.name)}"
             app:layout_flexBasisPercent="50%" />
     </merge>
-
-    <!-- android:="@{() -> handler.onClick(variant.name)}" -->
-    <!-- android:background="@{context.getColor(variant.color)}" -->
 
 </layout>

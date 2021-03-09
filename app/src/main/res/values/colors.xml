@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#750000</color>
-    <color name="colorPrimaryDark">#430000</color>
-    <color name="colorAccent">#03DAC5</color>
+<!--    <color name="colorPrimary">#750000</color>-->
+<!--    <color name="colorPrimaryDark">#430000</color>-->
+
+    <color name="colorPrimary">@color/mainBackground</color>
+    <color name="colorPrimaryDark">#14101B</color>
+
+    <color name="colorAccent">@android:color/holo_orange_dark</color>
     <color name="mainBackground">#262130</color>
+    <color name="mutedTextLight">#92FFFFFF</color>
+    <color name="mutedTextDark">#DD000000</color>
 
     <color name="colorRight">#039122</color>
     <color name="colorWrong">#AC160A</color>
-    <color name="colorNotAnswered">#B8B8B8</color>
+    <color name="colorNotAnswered">#FFD041</color>
 
     <color name="colorLight">#efefef</color>
     <color name="colorDark">#101010</color>

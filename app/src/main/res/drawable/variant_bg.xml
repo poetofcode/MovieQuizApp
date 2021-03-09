@@ -2,9 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/colorNotAnswered"/>
 
-<!--    <stroke android:width="3dp"-->
-<!--        android:color="#ff000000"-->
-<!--        />-->
+    <stroke android:width="5dp"
+        android:color="@android:color/transparent" />
 
     <padding
         android:left="1dp"

@@ -28,23 +28,34 @@
             tools:context=".presentation.GameFragment"
             android:padding="@dimen/content_padding">
 
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/colorLight">
+
+                <ImageView
+                    android:layout_width="@dimen/imageWidth"
+                    android:layout_height="@dimen/imageHeight"
+                    tools:src="@sample/cat"
+                    app:imageUrl="@{question.imageUrl}" />
+
+            </FrameLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="Из какого фильма этот монстр?"
                 android:textSize="20sp"
                 android:text="@{question.description}"
-                android:textColor="@android:color/holo_orange_dark"
+                android:textColor="@color/mutedTextLight"
                 android:layout_gravity="center" />
-
-            <ImageView
-                android:layout_width="@dimen/imageWidth"
-                android:layout_height="@dimen/imageHeight"
-                android:scaleType="centerInside"
-                app:imageUrl="@{question.imageUrl}"/>
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 app:flexWrap="wrap"
                 app:alignItems="stretch"
                 app:alignContent="center">

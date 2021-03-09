@@ -53,7 +53,7 @@ class GameViewData(
                 q.variants.map { VariantInfo(
                     it, 
                     R.color.colorNotAnswered,
-                    R.color.colorDark)
+                    R.color.mutedTextDark)
                 }
             )
         }

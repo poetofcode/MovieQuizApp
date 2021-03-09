@@ -4,6 +4,7 @@
 
     <dimen name="imageWidth">400dp</dimen>
     <dimen name="imageHeight">300dp</dimen>
+    <dimen name="fontSmall">14sp</dimen>
     <dimen name="fontMedium">20sp</dimen>
     <dimen name="rewardWidth">200dp</dimen>
     <dimen name="rewardHeight">200dp</dimen>
