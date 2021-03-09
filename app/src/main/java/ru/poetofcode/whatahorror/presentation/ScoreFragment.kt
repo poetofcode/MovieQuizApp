@@ -38,7 +38,7 @@ class ScoreViewData(
     }
 }
 
-class ScoreFragment : Fragment() {
+class ScoreFragment : BaseFragment() {
 
     private lateinit var binding: FragmentScoreBinding
 
@@ -62,12 +62,6 @@ class ScoreFragment : Fragment() {
                 mainActivity().restartGame()
             }
         }
-    }
-
-    private fun gameLogic() = mainActivity().gameLogic!!
-
-    private fun mainActivity(): MainActivity {
-        return requireActivity() as MainActivity
     }
 
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Movie Quiz App</string>
     <string name="nextButton"><![CDATA[Далее >>]]></string>
+    <string name="startButton">Погнали!</string>
 </resources>

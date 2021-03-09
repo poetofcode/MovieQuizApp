@@ -31,4 +31,13 @@ class FragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(ac
         fragments.clear()
         notifyDataSetChanged()
     }
+
+    fun remove(fragment: Fragment) {
+        fragments
+            .find { it.hashCode() == fragment.hashCode() }
+            .let {
+                fragments.remove(it)
+                notifyDataSetChanged()
+            }
+    }
 }

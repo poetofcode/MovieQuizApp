@@ -16,7 +16,7 @@ import ru.poetofcode.whatahorror.usecase.Question
 
 // How to use data-binding with Fragment: https://stackoverflow.com/a/34719627
 
-class GameFragment : Fragment(), GameView {
+class GameFragment : BaseFragment(), GameView {
 
     private lateinit var binding: FragmentGameBinding
 
@@ -32,6 +32,8 @@ class GameFragment : Fragment(), GameView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.variantHandler = object: VariantTouchHandler {
             override fun createTouchListener(variant: String): View.OnTouchListener {
                 return View.OnTouchListener { v, event ->
@@ -48,12 +50,6 @@ class GameFragment : Fragment(), GameView {
 
         gameLogic().gameView = this
         gameLogic().ask()
-    }
-
-    private fun gameLogic() = mainActivity().gameLogic!!
-
-    private fun mainActivity(): MainActivity {
-        return requireActivity() as MainActivity
     }
 
     override fun showQuestion(question: Question) {

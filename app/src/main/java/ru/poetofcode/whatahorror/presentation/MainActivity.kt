@@ -2,6 +2,7 @@ package ru.poetofcode.whatahorror.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.poetofcode.whatahorror.DaggerAppComponent
 import ru.poetofcode.whatahorror.DataModule
@@ -31,22 +32,26 @@ class MainActivity : AppCompatActivity() {
             pagerAdapter = this
         }
 
-        createGameFragment()
+        createMenuFragment()
     }
 
     fun openLastFragment() {
         viewPager.setCurrentItem(pagerAdapter!!.lastIndex(), true)
     }
 
+    fun createMenuFragment() {
+        pagerAdapter!!.addFragment(MenuFragment())
+        scrollToEnd()
+    }
+
     fun createGameFragment() {
         pagerAdapter!!.addFragment(GameFragment())
-        viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
+        scrollToEnd()
     }
 
     fun createScoreFragment() {
-        // Log.d("tag", "Invoked createScoreFragment()")
         pagerAdapter!!.addFragment(ScoreFragment())
-        viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
+        scrollToEnd()
     }
 
     fun restartGame() {
@@ -54,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         title = resources.getString(R.string.app_name)
         gameLogic?.resetGame()
         createGameFragment()
+    }
+
+    private fun scrollToEnd() {
+        viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
+    }
+
+    fun closeFragment(fragment: Fragment) {
+        pagerAdapter!!.remove(fragment)
     }
 
 }
