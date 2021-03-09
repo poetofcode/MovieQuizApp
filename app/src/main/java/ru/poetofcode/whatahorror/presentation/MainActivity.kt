@@ -39,9 +39,15 @@ class MainActivity : AppCompatActivity() {
         viewPager.setCurrentItem(pagerAdapter!!.lastIndex(), true)
     }
 
-    fun createMenuFragment() {
-        pagerAdapter!!.addFragment(MenuFragment())
-        scrollToEnd()
+    fun closeFragment(fragment: Fragment) {
+        pagerAdapter!!.remove(fragment)
+    }
+
+    fun restartGame() {
+        pagerAdapter!!.clearFragments()
+        title = resources.getString(R.string.app_name)
+        gameLogic?.resetGame()
+        createMenuFragment()
     }
 
     fun createGameFragment() {
@@ -54,19 +60,13 @@ class MainActivity : AppCompatActivity() {
         scrollToEnd()
     }
 
-    fun restartGame() {
-        pagerAdapter!!.clearFragments()
-        title = resources.getString(R.string.app_name)
-        gameLogic?.resetGame()
-        createGameFragment()
+    private fun createMenuFragment() {
+        pagerAdapter!!.addFragment(MenuFragment())
+        scrollToEnd()
     }
 
     private fun scrollToEnd() {
         viewPager.offscreenPageLimit = pagerAdapter!!.lastIndex() + 1
-    }
-
-    fun closeFragment(fragment: Fragment) {
-        pagerAdapter!!.remove(fragment)
     }
 
 }

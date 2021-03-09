@@ -56,9 +56,6 @@ class ScoreFragment : BaseFragment() {
         binding.score = ScoreViewData.fromScore(gameLogic().score()!!)
         binding.restartHandler = object: View.OnClickListener {
             override fun onClick(v: View?) {
-                Log.d("tag", "restartHandler(): on click")
-
-
                 mainActivity().restartGame()
             }
         }
