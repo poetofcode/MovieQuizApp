@@ -17,6 +17,32 @@
         android:padding="@dimen/content_padding"
         tools:context=".presentation.MenuFragment">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLight"
+                tools:text="Пример заголовка"
+                app:html='@{TVHelper.from("Movie %s App").colored("Quiz", @color/colorAccent)}'
+                android:textSize="@dimen/fontBig"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLight"
+                tools:text="Пример заголовка"
+                android:text="@string/subtitle"
+                android:textSize="@dimen/fontSmall"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

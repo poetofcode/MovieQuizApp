@@ -3,4 +3,5 @@
     <string name="nextButton"><![CDATA[Далее >>]]></string>
     <string name="startButton">Погнали!</string>
     <string name="descrStartGame">Начать игру</string>
+    <string name="subtitle">Угадайте ужастик по кадру</string>
 </resources>

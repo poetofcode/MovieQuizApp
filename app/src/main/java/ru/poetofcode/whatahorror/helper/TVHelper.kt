@@ -29,10 +29,13 @@ class TVHelper {
 
     var buffer: StringBuffer = StringBuffer()
 
-    fun build(): Spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)  {
-        Html.fromHtml(buffer.toString(), Html.FROM_HTML_MODE_LEGACY, ImageGetter(), null)
-    } else {
-        Html.fromHtml(buffer.toString(), ImageGetter(), null)
+    fun build(): Spanned {
+        replaceFirst("\n", wrapTag("", "br"))
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)  {
+            Html.fromHtml(buffer.toString(), Html.FROM_HTML_MODE_LEGACY, ImageGetter(), null)
+        } else {
+            Html.fromHtml(buffer.toString(), ImageGetter(), null)
+        }
     }
 
     fun plain(text: String): TVHelper {
@@ -64,7 +67,11 @@ class TVHelper {
     }
 
     private fun replaceOn(newStr: String) {
-        buffer.toString().replaceFirst("%s", newStr).apply {
+        replaceFirst("%s", newStr)
+    }
+
+    private fun replaceFirst(oldStr: String, newStr: String) {
+        buffer.toString().replaceFirst(oldStr, newStr).apply {
             buffer.setLength(0)
             buffer.append(this)
         }
