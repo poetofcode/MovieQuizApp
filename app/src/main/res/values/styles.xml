@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="fontFamily">sans-serif-thin</item>
+        <item name="android:textViewStyle">@style/MyTextView</item>
+    </style>
+
+    <style name="MyTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
 </resources>
