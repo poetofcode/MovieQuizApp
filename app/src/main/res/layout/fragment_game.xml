@@ -15,37 +15,31 @@
 
     </data>
 
-    <ScrollView
+
+    <LinearLayout
+        tools:context=".presentation.GameFragment"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/imageWidth"
+            android:layout_height="@dimen/imageHeight"
+            tools:src="@sample/cat"
+            app:imageUrl="@{question.imageUrl}" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            tools:context=".presentation.GameFragment"
-            android:padding="@dimen/content_padding">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:background="@color/colorLight">
-
-                <ImageView
-                    android:layout_width="@dimen/imageWidth"
-                    android:layout_height="@dimen/imageHeight"
-                    tools:src="@sample/cat"
-                    app:imageUrl="@{question.imageUrl}" />
-
-            </FrameLayout>
+            android:padding="@dimen/content_padding"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 tools:text="Из какого фильма этот монстр?"
                 android:textSize="20sp"
                 android:text="@{question.description}"
@@ -78,17 +72,18 @@
 
             </com.google.android.flexbox.FlexboxLayout>
 
-            <Button
-                android:id="@+id/nextPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nextButton"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:padding="20dp"
-                android:visibility="@{question.nextVisible ? View.VISIBLE : View.GONE}"/>
-
         </LinearLayout>
 
-    </ScrollView>
+        <Button
+            android:id="@+id/nextPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nextButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:visibility="@{question.nextVisible ? View.VISIBLE : View.GONE}"/>
+
+    </LinearLayout>
+
 </layout>

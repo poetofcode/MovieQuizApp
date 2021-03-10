@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View"/>
+        <import type="ru.poetofcode.whatahorror.helper.TVHelper"/>
 
         <variable
             name="startHandler"
             type="View.OnClickListener" />
     </data>
 
-    <androidx.core.widget.NestedScrollView xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/content_padding"
         tools:context=".presentation.MenuFragment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/content_padding"
-            android:orientation="vertical">
+            android:textColor="@color/colorLight"
+            tools:text="Пример заголовка"
+            android:text='@{TVHelper.from("%s - %s").plain("Example").colored("text", @color/colorAccent).build()}'
+            />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/startButton"
-                android:onClick="@{startHandler::onClick}"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_play_arrow_24"
+            android:layout_gravity="bottom|end"
+            android:onClick="@{startHandler::onClick}"
+            android:contentDescription="@string/descrStartGame"
+            android:layout_margin="20dp"
+            android:background="@color/colorAccent"
+            app:fabSize="normal"/>
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 
 </layout>
