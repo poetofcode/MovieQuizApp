@@ -1,12 +1,9 @@
 package ru.poetofcode.whatahorror.presentation
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter

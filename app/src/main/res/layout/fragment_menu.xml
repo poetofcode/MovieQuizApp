@@ -22,8 +22,10 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorLight"
             tools:text="Пример заголовка"
-            android:text='@{TVHelper.from("%s - %s").plain("Example").colored("text", @color/colorAccent).build()}'
-            />
+            app:html='@{TVHelper.from("Made with %s by %s").img("heart.png").link("https://github.com/poetofcode", "@poetofcode")}'
+            android:textSize="@dimen/fontSmall"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textStyle="bold"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
