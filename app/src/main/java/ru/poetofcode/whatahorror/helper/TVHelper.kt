@@ -13,16 +13,14 @@ import ru.poetofcode.whatahorror.App
 
 class TVHelper {
 
-    inner class Pair(val key: String, val value: String) {
+    inner class Pair(private val key: String, private val value: String) {
         override fun toString(): String {
-            return "${key} = \"$value\""
+            return "$key = \"$value\""
         }
     }
 
     inner class ImageGetter : Html.ImageGetter {
         override fun getDrawable(source: String): Drawable {
-//            val id: Int
-//            val d: Drawable = getResources().getDrawable(id)
             val d = Drawable.createFromStream(App.instance.assets.open(source), null)
             d.setBounds(0, 0, d.intrinsicWidth, d.intrinsicHeight)
             return d
