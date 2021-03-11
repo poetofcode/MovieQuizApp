@@ -19,4 +19,7 @@
     <color name="colorDark">#101010</color>
     <color name="scoreBackground">#20295C</color>
     <color name="colorWinnerTitle">#FFC107</color>
+
+    <color name="colorWave">@color/colorAccent</color>
+    <color name="colorLink">#0B395E</color>
 </resources>

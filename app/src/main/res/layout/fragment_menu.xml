@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -11,12 +12,12 @@
             type="View.OnClickListener" />
     </data>
 
-    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/content_padding"
         tools:context=".presentation.MenuFragment">
 
+        <!-- App title -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,16 +44,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorLight"
-            tools:text="Пример заголовка"
-            app:html='@{TVHelper.from("Made with %s by %s").img("heart.png").link("https://github.com/poetofcode", "@poetofcode")}'
-            android:textSize="@dimen/fontSmall"
-            android:layout_gravity="bottom|center_horizontal"
-            android:textStyle="bold"/>
-
+        <!-- FAB -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,10 +52,48 @@
             android:layout_gravity="bottom|end"
             android:onClick="@{startHandler::onClick}"
             android:contentDescription="@string/descrStartGame"
-            android:layout_margin="20dp"
             android:background="@color/colorAccent"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            app:layout_anchor="@+id/footer"
+            app:layout_anchorGravity="end"
+            android:layout_marginEnd="@dimen/startButtonMarginEnd"/>
 
-    </FrameLayout>
+        <!-- Footer wave -->
+        <FrameLayout
+            android:id="@id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/waveHeight"
+            android:orientation="vertical"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_wave"
+                app:tint="@color/colorWave"
+                android:layout_gravity="top"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorWave"
+                android:layout_gravity="bottom"/>
+
+        </FrameLayout>
+
+        <!-- Author sign -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDark"
+            android:textColorLink="@color/colorLink"
+            tools:text="Пример заголовка"
+            app:html='@{TVHelper.from("Made with %s by %s").img("heart.png").link("https://github.com/poetofcode", "@poetofcode")}'
+            android:textSize="@dimen/fontSmall"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

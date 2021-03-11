@@ -10,4 +10,7 @@
     <dimen name="rewardHeight">200dp</dimen>
     <dimen name="fontBig">26sp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="waveHeight">190dp</dimen>
+    <dimen name="startButtonMarginEnd">20dp</dimen>
 </resources>
