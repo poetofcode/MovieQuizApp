@@ -3,14 +3,14 @@
     <color name="colorPrimary">@color/mainBackground</color>
     <color name="colorPrimaryDark">#14101B</color>
 
-    <color name="colorAccent">@android:color/holo_orange_dark</color>
+    <color name="colorAccent">#FFB907</color>
     <color name="mainBackground">#262130</color>
     <color name="mutedTextLight">#92FFFFFF</color>
     <color name="mutedTextDark">#DD000000</color>
 
-    <color name="colorRight">#039122</color>
-    <color name="colorWrong">#AC160A</color>
-    <color name="colorNotAnswered">#FFD041</color>
+    <color name="colorVariantRight">#039122</color>
+    <color name="colorVariantWrong">#AC160A</color>
+    <color name="colorVariantDefault">@color/colorAccent</color>
 
     <color name="colorLight">#efefef</color>
     <color name="colorDark">#101010</color>

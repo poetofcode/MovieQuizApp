@@ -1,14 +1,11 @@
 package ru.poetofcode.whatahorror.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_game.*
 import ru.poetofcode.whatahorror.R
 import ru.poetofcode.whatahorror.databinding.FragmentGameBinding
 import ru.poetofcode.whatahorror.usecase.GameView
@@ -57,15 +54,12 @@ class GameFragment : BaseFragment(), GameView {
         binding.question = gameViewData
         binding.question!!.currIndex = gameLogic().answeredQuestionCount() + 1
         binding.question!!.totalCount = gameLogic().totalQuestionCount()
-
-        // TODO replace on binding
-        nextPage.setOnClickListener { mainActivity().openLastFragment() }
     }
 
     override fun markVariantAsRight(variantIndex: String) {
         gameViewData.variants.forEach {
             if (variantIndex == it.name) {
-                it.color = R.color.colorRight
+                it.color = R.color.colorVariantRight
                 it.textColor = R.color.colorLight
                 return@forEach
             }
@@ -75,7 +69,7 @@ class GameFragment : BaseFragment(), GameView {
     override fun markVariantAsWrong(variantIndex: String) {
         gameViewData.variants.forEach {
             if (variantIndex == it.name) {
-                it.color = R.color.colorWrong
+                it.color = R.color.colorVariantWrong
                 it.textColor = R.color.colorLight
                 return@forEach
             }

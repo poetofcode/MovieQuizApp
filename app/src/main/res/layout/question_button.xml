@@ -22,7 +22,7 @@
             android:background="@drawable/variant_bg"
             android:padding="5dp"
             android:textAllCaps="false"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:textSize="@dimen/fontSmall"
             android:text="@{variant.name}"
             android:textColor="@{context.getColor(variant.textColor)}"

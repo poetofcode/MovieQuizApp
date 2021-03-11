@@ -64,7 +64,7 @@ class GameViewData(
                 q.imageUrls[0],
                 q.variants.map { VariantInfo(
                     it, 
-                    R.color.colorNotAnswered,
+                    R.color.colorVariantDefault,
                     R.color.mutedTextDark)
                 }
             )
