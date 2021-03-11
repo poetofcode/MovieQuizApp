@@ -16,7 +16,6 @@
 
     </data>
 
-
     <LinearLayout
         tools:context=".presentation.GameFragment"
         xmlns:tools="http://schemas.android.com/tools"
@@ -25,6 +24,7 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <!-- Counters -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
             app:imageUrl="@{question.imageUrl}"
             android:layout_marginTop="20dp" />
 
+        <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,16 +83,6 @@
             </com.google.android.flexbox.FlexboxLayout>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/nextPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nextButton"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:padding="20dp"
-            android:visibility="@{question.nextVisible ? View.VISIBLE : View.GONE}"/>
 
     </LinearLayout>
 

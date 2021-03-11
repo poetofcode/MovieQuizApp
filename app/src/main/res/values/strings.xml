@@ -4,4 +4,5 @@
     <string name="startButton">Погнали!</string>
     <string name="descrStartGame">Начать игру</string>
     <string name="subtitle">Угадайте ужастик по кадру</string>
+    <string name="backToHomeButton">На главную</string>
 </resources>

@@ -64,12 +64,18 @@
                 android:id="@+id/restartButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Переиграть"
+                android:text="@string/backToHomeButton"
+                android:background="@drawable/variant_bg"
+                android:textAllCaps="false"
+                android:textStyle="normal"
+                android:textSize="@dimen/fontSmall"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:padding="20dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:onClick="@{restartHandler::onClick}"/>
-
 
         </LinearLayout>
 
