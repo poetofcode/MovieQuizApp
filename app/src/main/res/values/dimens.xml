@@ -13,4 +13,10 @@
 
     <dimen name="waveHeight">190dp</dimen>
     <dimen name="startButtonMarginEnd">20dp</dimen>
+    <dimen name="witchHeight">150dp</dimen>
+    <dimen name="witchMarginTop">50dp</dimen>
+    <dimen name="cloudBackHeight">50dp</dimen>
+    <dimen name="cloudBackMarginTop">30dp</dimen>
+    <dimen name="cloudFrontHeight">50dp</dimen>
+    <dimen name="cloudFrontMarginTop">140dp</dimen>
 </resources>

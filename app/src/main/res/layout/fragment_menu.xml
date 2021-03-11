@@ -17,6 +17,34 @@
         android:layout_height="match_parent"
         tools:context=".presentation.MenuFragment">
 
+        <!-- Cloud back -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cloudBackHeight"
+            app:srcCompat="@drawable/ic_cloud_back"
+            android:layout_marginTop="@dimen/cloudBackMarginTop"
+            app:tint="@color/colorCloud"
+            app:anim="@{@anim/cloud_back}"
+            android:scaleX="-1"/>
+
+        <!-- Witch -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/witchHeight"
+            app:srcCompat="@drawable/ic_witch"
+            android:layout_marginTop="@dimen/witchMarginTop"
+            app:tint="@color/colorWitch"
+            app:anim="@{@anim/witch_fly}"/>
+
+        <!-- Cloud front -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cloudFrontHeight"
+            app:srcCompat="@drawable/ic_cloud_front"
+            android:layout_marginTop="@dimen/cloudFrontMarginTop"
+            app:tint="@color/colorCloud"
+            app:anim="@{@anim/cloud_front}" />
+
         <!-- App title -->
         <LinearLayout
             android:layout_width="wrap_content"

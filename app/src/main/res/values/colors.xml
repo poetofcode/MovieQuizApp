@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#750000</color>-->
-<!--    <color name="colorPrimaryDark">#430000</color>-->
-
     <color name="colorPrimary">@color/mainBackground</color>
     <color name="colorPrimaryDark">#14101B</color>
 
@@ -19,6 +16,8 @@
     <color name="colorDark">#101010</color>
     <color name="scoreBackground">#20295C</color>
     <color name="colorWinnerTitle">#FFC107</color>
+    <color name="colorWitch">@color/colorPrimaryDark</color>
+    <color name="colorCloud">@color/mutedTextLight</color>
 
     <color name="colorWave">@color/colorAccent</color>
     <color name="colorLink">#0B395E</color>

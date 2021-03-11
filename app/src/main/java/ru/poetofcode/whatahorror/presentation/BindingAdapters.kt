@@ -4,10 +4,12 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
+
 
 @BindingAdapter("app:imageUrl")
 fun loadImage(imageView: ImageView, imageUrl: String) {
@@ -34,4 +36,10 @@ fun setImageTint(view: View, @ColorInt color: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         view.backgroundTintList = ColorStateList.valueOf(color)
     }
+}
+
+@BindingAdapter("app:anim")
+fun applyAnimation(view: View, anim: Animation) {
+    // val anim: Animation = AnimationUtils.loadAnimation(App.instance, animRes)
+    view.startAnimation(anim)
 }
