@@ -28,7 +28,7 @@ class ScoreViewData(
                 when (s.winnerRank) {
                     WinnerRank.WINNER_BEST -> "ФАНАТ УЖАСТИКОВ"
                     WinnerRank.WINNER_GOLD -> "ОПАСНЫЙ ЗНАТОК"
-                    WinnerRank.WINNER_SILVER -> "ЛЮБИТЕЛЬ КОШМАРОВ"
+                    WinnerRank.WINNER_SILVER -> "ЛЮБИТЕЛЬ ЖАНРА"
                     else -> "ПУГЛИВЫЙ НОВИЧОК"
                 },
                 "file:///android_asset/award.png",

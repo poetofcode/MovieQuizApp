@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text='@{String.valueOf("за " + score.answerRightCount + " из " + score.answerTotalCount) + "\nугаданных монстров"}'
+                android:text='@{String.valueOf("за " + score.answerRightCount + " из " + score.answerTotalCount) + "\nугаданных фильмов"}'
                 android:textColor="@color/colorLight"
                 android:textSize="@dimen/fontMedium"
                 android:textAlignment="center"
