@@ -34,7 +34,8 @@
             app:srcCompat="@drawable/ic_witch"
             android:layout_marginTop="@dimen/witchMarginTop"
             app:tint="@color/colorWitch"
-            app:anim="@{@anim/witch_fly}"/>
+            app:anim="@{@anim/witch_fly}"
+            android:layout_gravity="center_horizontal"/>
 
         <!-- Cloud front -->
         <ImageView

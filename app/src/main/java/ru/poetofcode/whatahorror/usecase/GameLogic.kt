@@ -19,12 +19,16 @@ class GameLogic(
     }
 
     fun ask() {
-        if (answeredCount() >= movieProvider.count()) {
+        if (answeredQuestionCount() >= movieProvider.count()) {
             return
         }
 
         gameView?.showQuestion(lastQuestion())
     }
+
+    fun answeredQuestionCount() = lastQuestions.count { it.result.isAnswered() }
+
+    fun totalQuestionCount() = movieProvider.count()
 
     private fun lastQuestion(): Question {
         if (lastQuestions.size > 0 && !lastQuestions.last().result.isAnswered()) {
@@ -34,8 +38,6 @@ class GameLogic(
 
         return lastQuestions.last()
     }
-
-    private fun answeredCount() = lastQuestions.count { it.result.isAnswered() }
 
     private fun createQuestion(): Question {
         val count = movieProvider.count()
@@ -75,7 +77,7 @@ class GameLogic(
             gameView?.markVariantAsRight(q.rightVariant)
             q.result = AnswerResult.RESULT_WRONG
         }
-        gameView?.showResult(answeredCount(), movieProvider.count())
+        gameView?.showResult(answeredQuestionCount(), movieProvider.count())
     }
 
     fun resetGame() {
@@ -84,7 +86,7 @@ class GameLogic(
     }
 
     fun score(): Score? {
-        if (answeredCount() < movieProvider.count()) {
+        if (answeredQuestionCount() < movieProvider.count()) {
             return null
         }
 

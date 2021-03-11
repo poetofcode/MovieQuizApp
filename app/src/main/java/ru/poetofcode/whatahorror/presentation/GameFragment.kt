@@ -55,6 +55,8 @@ class GameFragment : BaseFragment(), GameView {
     override fun showQuestion(question: Question) {
         gameViewData = GameViewData.fromQuestion(question)
         binding.question = gameViewData
+        binding.question!!.currIndex = gameLogic().answeredQuestionCount() + 1
+        binding.question!!.totalCount = gameLogic().totalQuestionCount()
 
         // TODO replace on binding
         nextPage.setOnClickListener { mainActivity().openLastFragment() }

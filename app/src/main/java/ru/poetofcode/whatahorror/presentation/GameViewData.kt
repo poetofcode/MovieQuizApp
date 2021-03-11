@@ -44,6 +44,18 @@ class GameViewData(
             notifyChange()
         }
 
+    @Bindable var currIndex = 0
+        set(value) {
+            field = value
+            notifyChange()
+        }
+
+    @Bindable var totalCount = 0
+        set(value) {
+            field = value
+            notifyChange()
+        }
+
     companion object {
 
         fun fromQuestion(q: Question): GameViewData {

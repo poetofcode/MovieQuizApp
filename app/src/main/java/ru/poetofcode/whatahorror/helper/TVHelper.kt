@@ -38,25 +38,25 @@ class TVHelper {
         }
     }
 
-    fun plain(text: String): TVHelper {
-        replaceOn(text)
+    fun plain(text: Any): TVHelper {
+        replaceOn(text.toString())
         return this
     }
 
-    fun colored(text: String, @ColorRes colorRes: Int): TVHelper {
+    fun colored(text: Any, @ColorRes colorRes: Int): TVHelper {
         val p = Pair("color", hexFromRes(colorRes))
-        replaceOn(wrapTag(text, "font", p))
+        replaceOn(wrapTag(text.toString(), "font", p))
         return this
     }
 
-    fun link(url: String, text: String = ""): TVHelper {
-        val content = if (text.isBlank()) url else text
-        replaceOn(wrapTag(content, "a", Pair("href", url)))
+    fun link(url: Any, text: Any = ""): TVHelper {
+        val content = if (text.toString().isBlank()) url else text
+        replaceOn(wrapTag(content.toString(), "a", Pair("href", url.toString())))
         return this
     }
 
-    fun img(src: String): TVHelper {
-        replaceOn(wrapTag("", "img", Pair("src", src)))
+    fun img(src: Any): TVHelper {
+        replaceOn(wrapTag("", "img", Pair("src", src.toString())))
         return this
     }
 

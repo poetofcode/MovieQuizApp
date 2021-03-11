@@ -4,6 +4,7 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="ru.poetofcode.whatahorror.helper.TVHelper"/>
 
         <variable
             name="question"
@@ -20,15 +21,23 @@
         tools:context=".presentation.GameFragment"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorLight"
+            android:textSize="@dimen/fontMedium"
+            app:html='@{TVHelper.from("%s/%s").colored(question.currIndex, @color/colorAccent).plain(question.totalCount)}' />
 
         <ImageView
             android:layout_width="@dimen/imageWidth"
             android:layout_height="@dimen/imageHeight"
             tools:src="@sample/cat"
-            app:imageUrl="@{question.imageUrl}" />
+            app:imageUrl="@{question.imageUrl}"
+            android:layout_marginTop="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +52,7 @@
                 tools:text="Из какого фильма этот монстр?"
                 android:textSize="20sp"
                 android:text="@{question.description}"
-                android:textColor="@color/mutedTextLight"
+                android:textColor="@color/colorLight"
                 android:layout_gravity="center" />
 
             <com.google.android.flexbox.FlexboxLayout
