@@ -7,7 +7,7 @@ The basic idea is to turn the movie information file movie.json into a mobile qu
 ![Poster](https://raw.githubusercontent.com/poetofcode/MovieQuizApp/effects/sketches/poster.png)
 
 [![Commits](https://badgen.net/github/commits/poetofcode/moviequizapp/)](https://github.com/poetofcode/MovieQuizApp/commits/master)
-[![Release](https://badgen.net/github/release/poetofcode/moviequizapp/)](https://github.com/poetofcode/MovieQuizApp/releases)
+[![Release](https://badgen.net/github/release/poetofcode/moviequizapp/stable)](https://github.com/poetofcode/MovieQuizApp/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ### Technologies
