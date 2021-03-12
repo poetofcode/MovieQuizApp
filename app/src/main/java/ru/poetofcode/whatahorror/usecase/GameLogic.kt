@@ -98,4 +98,6 @@ class GameLogic(
         )
     }
 
+    fun isLastAnswerRight() = lastQuestions.last().result.isRight()
+
 }

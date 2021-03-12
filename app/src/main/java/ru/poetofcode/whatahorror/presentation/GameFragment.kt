@@ -80,6 +80,8 @@ class GameFragment : BaseFragment(), GameView {
     override fun showResult(answeredCount: Int, totalCount: Int) {
         mainActivity().title = "Завершено $answeredCount из $totalCount"
         gameViewData.isNextVisible = true
+        gameViewData.description = if (gameLogic().isLastAnswerRight()) "Угадали!" else "Ой, неверно!"
+        gameViewData.description += " Листайте далее >>"
 
         if (answeredCount < totalCount) {
             mainActivity().createGameFragment()

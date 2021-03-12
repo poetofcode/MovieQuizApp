@@ -32,12 +32,18 @@ class VariantInfo(
 }
 
 class GameViewData(
-    val description: String,
+    description: String,
     val imageUrl: String = "",
     val variants: List<VariantInfo> = listOf(),
     isNextVisible: Boolean = false
 ): BaseObservable()
 {
+    @Bindable var description = description
+        set(value) {
+            field = value
+            notifyChange()
+        }
+
     @Bindable var isNextVisible = isNextVisible
         set(value) {
             field = value
